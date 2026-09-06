@@ -1,5 +1,5 @@
-const CACHE = "curaos-site-v4";
-const ASSETS = ["./", "./index.html", "./css/style.css?v=2.0", "./js/main.js?v=2.0", "./media/logo.png", "./manifest.json"];
+const CACHE = "curaos-site-v5";
+const ASSETS = ["./", "./index.html", "./css/style.css?v=2.1", "./js/main.js?v=2.1", "./media/logo.png", "./manifest.json"];
 self.addEventListener("install", e=>{ e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))); self.skipWaiting(); });
 self.addEventListener("activate", e=>{ e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))); self.clients.claim(); });
 self.addEventListener("fetch", e=>{
