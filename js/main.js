@@ -35,33 +35,19 @@
   }
 
   async function handleInstall(){
+    // Marketing site: redirect to SaaS portal where true PWA engine lives (app.curaos.health)
+    // This prevents installing the static marketing landing page and ensures the
+    // operational OS dashboard is installed instead.
+    const SAAS_URL = "https://app.curaos.health/?install=true";
+    // Keep iOS guidance but redirect after guidance? For marketing, always redirect first.
     if(isIOS()){
-      openIOS();
+      // For iOS marketing visitors, show one-tap redirect hint then go to app
+      window.location.href = SAAS_URL;
       return;
     }
-    if(deferred){
-      try{
-        deferred.prompt();
-        const choice = await deferred.userChoice;
-        const hint = document.getElementById('pwaHint');
-        if(hint){
-          hint.textContent = choice.outcome === 'accepted' ? 'Installing… check home screen' : 'Install dismissed';
-          setTimeout(()=>hint.textContent='Works offline after install', 3000);
-        }
-      }catch{}
-      deferred = null;
-      updateButtons();
-      return;
-    }
-    // Fallback for browsers without deferred
-    const hint = document.getElementById('pwaHint');
-    if(hint){
-      hint.textContent = 'Use browser menu → Install / Add to Home Screen';
-      setTimeout(()=>hint.textContent='Works offline after install', 4000);
-    } else {
-      // No hint element on header — show iOS modal as generic help on desktop Firefox etc.
-      if(!isIOS()) openIOS();
-    }
+    // For all other browsers, navigate to SaaS portal where deferred prompt will fire
+    window.location.href = SAAS_URL;
+    return;
   }
 
   installBtns.forEach(b=>b.addEventListener('click', handleInstall));
