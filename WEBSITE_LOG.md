@@ -220,3 +220,10 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 - **Fix:** `CuraOS_Website/index.html` all 7 refs now `media/logo.png` (was `CuraOS_Logo-F.png`); `manifest.json:10` + `sw.js:2` same; `index.html:15` `v1.0.4` + `sw.js:1` `curaos-site-v3` force browsers to reload (old cache was the reported issue).
 - **Git:** private `bce1e19` (deletes tracked `media/D/E/F`) -> push; public `62c9a7c` (same deletions, exact root mirror) -> push. Live `media/logo.png` 200 136293 verified.
 - **Note:** `CuraOS_Website/assets/` still holds `CuraOS_Logo-D.png` + `CuraOS_Logo-F.png` + `logo.png` as archive (user only cleaned `media/`); `frontend/public/media/logo.png` already 136293 in sync.
+
+## 14. 2026-09-06 — Apple-Grade UI Overhaul (Principal UI/UX pass, private 9b99dbc -> public bc82d93)
+
+- **Header:** 64px sticky glass (`blur(16px)`, `rgba(255,255,255,0.8)`, `z-50`); logo `a.brand-logo` flex container (`max-height:40px`) + img `height:32px` explicit; white CSS boxes behind logos removed (phone/hero transparent, footer deliberate white pill since `logo.png` itself is white-bg).
+- **Badges:** jargon badges deleted -> `Bank-Grade Encryption / 99.99% Uptime / HIPAA & GDPR Ready / Zero-Config Deployment`; hero-meta -> `Secure - Always in sync`.
+- **IHMS:** glass card (`rgba(255,255,255,0.9)`, `24px` radius, layered shadow), sky badge, gradient `text-4xl` price, 2-col grid with glowing teal SVG checks + hover (no grey boxes).
+- **Deploy:** `css/js?v=2.0` + `SW v4` force CDN purge; force-staged `media/logo.png` (directive named stale `CuraOS_Logo-E.png` — media canonical is `logo.png`); public root mirror verified; `media/logo.png` 200 live, `v2.0` + badges + IHMS confirmed on live URL.
