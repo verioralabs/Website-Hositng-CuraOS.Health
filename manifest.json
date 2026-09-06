@@ -8,7 +8,7 @@
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "icons": [
-    { "src": "media/CuraOS_Logo-E.png", "sizes": "any", "type": "image/png", "purpose": "any" },
-    { "src": "media/CuraOS_Logo-E.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }
+    { "src": "media/CuraOS_Logo-F.png", "sizes": "any", "type": "image/png", "purpose": "any" },
+    { "src": "media/CuraOS_Logo-F.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }
   ]
 }
