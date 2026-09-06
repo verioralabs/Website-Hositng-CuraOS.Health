@@ -274,3 +274,22 @@ img{max-width:100%}
   width:28px;height:28px;border-radius:8px;background:white;border:1px solid #e2e8f0;
   display:grid;place-items:center;font-size:14px;flex:0 0 28px;
 }
+
+/* IHMS flagship */
+.ihms-card{
+  background:white;border:1px solid #e2e8f0;border-radius:16px;padding:24px;
+  text-align:center;
+}
+.ihms-badge{
+  display:inline-flex;align-items:center;
+  background:var(--brand-dark);color:white;
+  padding:6px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+}
+.ihms-card h2{margin:14px 0 0;font-size:26px;color:var(--brand-dark);font-weight:900;letter-spacing:-.02em}
+.ihms-card p{margin:8px auto 0;max-width:640px;color:#475569;line-height:1.6}
+.ihms-price-row{margin:16px 0 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.ihms-price-row .price{font-size:18px;background:#0f172a;color:white;border-color:#0f172a}
+.ihms-note{color:#64748b;font-size:12px}
+.ihms-features{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:8px;max-width:640px;margin-left:auto;margin-right:auto;text-align:left}
+.ihms-features li{font-size:13px;color:#334155;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
