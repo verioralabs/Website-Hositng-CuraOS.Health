@@ -84,4 +84,50 @@
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
     });
   }
+
+  // ---- Dynamic regional pricing (Platform Admin → Public API → GeoIP) ----
+  const API_BASE = (window.__CURAOS_API__ || "https://api.curaos.health") + "/api/v1/public/pricing/";
+  const currencySelect = document.getElementById('currencySelect');
+  const FALLBACK_PRICES = {
+    "cura-rx": {price:"49.00", currency:"USD"},
+    "cura-doctor": {price:"49.00", currency:"USD"},
+    "cura-labs": {price:"49.00", currency:"USD"},
+    "cura-waitlist": {price:"49.00", currency:"USD"},
+    "cura-ihms": {price:"5000.00", currency:"USD"}
+  };
+  function formatPrice(amount, currency){
+    try{
+      return new Intl.NumberFormat(undefined, {style:"currency", currency}).format(Number(amount));
+    }catch{ return currency + " " + amount; }
+  }
+  async function loadPricing(country){
+    const url = country && country !== "auto" ? API_BASE + "?country=" + encodeURIComponent(country) : API_BASE;
+    try{
+      const res = await fetch(url, {headers:{"Accept":"application/json"}});
+      if(!res.ok) throw new Error("bad status");
+      const data = await res.json();
+      const tiers = data.tiers || [];
+      tiers.forEach(t=>{
+        const el = document.getElementById("price-" + t.module_code);
+        if(el) el.textContent = formatPrice(t.monthly_price, t.currency_code) + "/mo";
+      });
+      const note = document.getElementById("ihmsCountryNote");
+      if(note) note.textContent = (data.country || country || "US") + " pricing · " + (data.currency || "USD") + " · Auto-detected region · Switch currency above";
+      return;
+    }catch(e){
+      // fallback to local defaults
+      Object.keys(FALLBACK_PRICES).forEach(code=>{
+        const el = document.getElementById("price-" + code);
+        if(el){
+          const p = FALLBACK_PRICES[code];
+          el.textContent = formatPrice(p.price, p.currency) + "/mo";
+        }
+      });
+    }
+  }
+  // initial load
+  loadPricing();
+  if(currencySelect){
+    currencySelect.addEventListener('change', ()=> loadPricing(currencySelect.value));
+  }
 })();

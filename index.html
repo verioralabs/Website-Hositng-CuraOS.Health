@@ -29,6 +29,15 @@
         <a href="https://github.com/verioralabs/CuraOS" target="_blank" rel="noreferrer">Docs</a>
       </nav>
       <div class="topbar-actions">
+        <label for="currencySelect" class="sr-only">Currency</label>
+        <select id="currencySelect" class="btn btn-ghost btn-sm" style="padding:6px 8px;background:white" title="Choose currency">
+          <option value="auto">Auto (GeoIP)</option>
+          <option value="US">USD — United States</option>
+          <option value="BD">BDT — Bangladesh (৳)</option>
+          <option value="IN">INR — India (₹)</option>
+          <option value="GB">GBP — United Kingdom (£)</option>
+          <option value="DE">EUR — Europe (€)</option>
+        </select>
         <button id="pwaInstallBtn" class="btn btn-dark btn-sm" style="display:none">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
           Install App
@@ -105,6 +114,29 @@
     </div>
   </section>
 
+  <!-- Flagship Enterprise -->
+  <section id="ihms" class="section bg-brand-pastel" style="padding-bottom:24px">
+    <div class="container">
+      <div class="ihms-card shadow-floating-card">
+        <div class="ihms-badge">Flagship — CuraOS-IHMS</div>
+        <h2>Integrated Hospital Management System</h2>
+        <p>One platform for every department. Multi-Department Sync, Centralized Billing & EHR, Inpatient & OPD Operations, Analytics Dashboard, and Enterprise Support — run a 50-bed clinic or a 500-bed medical city on one OS.</p>
+        <div class="ihms-price-row">
+          <span class="price" id="price-cura-ihms" data-module="cura-ihms">$5,000/mo</span>
+          <span class="ihms-note" id="ihmsCountryNote">US pricing · Auto-detected region · Switch currency above</span>
+        </div>
+        <ul class="ihms-features">
+          <li>✓ Multi-Department Sync — pharmacy, labs, nursing, OT in one ledger</li>
+          <li>✓ Centralized Billing & EHR — double-entry COGS, surgical margins, doctor payouts</li>
+          <li>✓ Inpatient & OPD Operations — bed board, ward, OT visualizer, eMAR</li>
+          <li>✓ Analytics Dashboard — occupancy, revenue waterfall, health score</li>
+          <li>✓ Enterprise Support — SLAs, SSO/RBAC, white-label, audit trails</li>
+        </ul>
+        <a href="#pricing" class="btn btn-primary">Talk to Enterprise Sales →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Modules -->
   <section id="modules" class="section">
     <div class="container">
@@ -116,7 +148,7 @@
         <a href="#" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></span>
-            <span class="price">$49/mo</span>
+            <span class="price" id="price-cura-rx" data-module="cura-rx">$49/mo</span>
           </div>
           <h3>CuraOS-Rx</h3>
           <p class="tag">PHARMACY OS</p>
@@ -126,7 +158,7 @@
         <a href="#" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></span>
-            <span class="price">$49/mo</span>
+            <span class="price" id="price-cura-doctor" data-module="cura-doctor">$49/mo</span>
           </div>
           <h3>CuraOS-Doctor</h3>
           <p class="tag">SOLO PRACTITIONER OS</p>
@@ -136,7 +168,7 @@
         <a href="#" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg></span>
-            <span class="price">$49/mo</span>
+            <span class="price" id="price-cura-labs" data-module="cura-labs">$49/mo</span>
           </div>
           <h3>CuraOS-Labs</h3>
           <p class="tag">DIAGNOSTIC CENTER OS</p>
@@ -146,7 +178,7 @@
         <a href="#" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-            <span class="price">$49/mo</span>
+            <span class="price" id="price-cura-waitlist" data-module="cura-waitlist">$49/mo</span>
           </div>
           <h3>CuraOS-WaitList</h3>
           <p class="tag">QUEUE MANAGEMENT OS</p>
@@ -157,12 +189,12 @@
     </div>
   </section>
 
-  <!-- Platform -->
+  <!-- Platform — value-first copy (no internal jargon) -->
   <section id="platform" class="section bg-brand-pastel">
     <div class="container">
       <div class="section-head">
-        <h2>The OS behind the modules.</h2>
-        <p>Four primitives — clinical, supply, money, identity — kept in sync by an entitlement-driven shell and soft-pastel design system (#EAF4FF · #F4EAFE · #FFFFFF · #0F172A).</p>
+        <h2>One Unified Operating System for Modern Healthcare.</h2>
+        <p>Connect your pharmacy, consultations, diagnostics, and patient queues into a seamless, high-speed clinical workflow — from OPD to billing, every team works in one shared record.</p>
       </div>
       <div class="grid grid-3">
         <div class="feature-card shadow-floating-card">
@@ -182,10 +214,10 @@
         </div>
       </div>
       <div class="platform-strip shadow-floating-card">
-        <div class="strip-item"><strong>AppShell</strong><span>Workspace switcher · Chain bar</span></div>
-        <div class="strip-item"><strong>PWA Install</strong><span>beforeinstallprompt · iOS modal</span></div>
-        <div class="strip-item"><strong>Offline WAL</strong><span>IndexedDB · X-Offline-Synced-At</span></div>
-        <div class="strip-item"><strong>Design</strong><span>pastel-sky · pastel-lavender</span></div>
+        <div class="strip-item"><strong>Unified Workspace</strong><span>One OS, four modules, zero switching</span></div>
+        <div class="strip-item"><strong>Native-like PWA</strong><span>One-tap install on any device</span></div>
+        <div class="strip-item"><strong>Works Offline</strong><span>Care continues without signal</span></div>
+        <div class="strip-item"><strong>Built for Clarity</strong><span>Calm, fast, clinician-approved</span></div>
       </div>
     </div>
   </section>
@@ -195,7 +227,7 @@
     <div class="container">
       <div class="section-head">
         <h2>Transparent pricing. No per-seat tax.</h2>
-        <p>Start free with the static marketing site, pay only when you go live on `curaos.health`. Entitlements gated by `active_modules`.</p>
+        <p>Start free with the static marketing site, pay only when you go live on `curaos.health`. Mix and match modules as you grow.</p>
       </div>
       <div class="grid grid-3">
         <div class="pricing-card shadow-floating-card">
@@ -293,7 +325,7 @@
         <h4>Veriora Labs</h4>
         <a href="https://www.verioralabs.com" target="_blank" rel="noreferrer">verioralabs.com</a>
         <span class="muted">© 2026 Veriora Labs. All rights reserved.</span>
-        <span class="muted">Web-first · PWA · Soft pastel #EAF4FF · #F4EAFE</span>
+        <span class="muted">Web-first · PWA · Seamless clinical workflow</span>
       </div>
     </div>
     <div class="container footer-bottom">

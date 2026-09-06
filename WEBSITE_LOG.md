@@ -43,8 +43,11 @@ npx playwright test --list                                  # 12 specs
 | What | Status | SHA / Path |
 |---|---|---|
 | Logo-1 (provided image) | ✅ **Fixed** — corrupted `logo.svg` 3518 replaced with correct `CuraOS_Logo-D.png` 821921 | `CuraOS_Website/assets/CuraOS_Logo-D.png` ✅ (verified 821921) + `assets/logo.png` alias + `media/CuraOS_Logo-D.png` + `media/logo.png`, mirrored to `frontend/public/media/CuraOS_Logo-D.png` + `frontend/public/media/logo.png` + `frontend/public/CuraOS_Logo-D.png` — header/hero/footer/phone now `<img src="media/CuraOS_Logo-D.png">` (`index.html:9` icon, `:22` brand, `:76` hero, `:258` phone, `:274` footer; `manifest.json:10` + `sw.js:2` precache). Deleted corrupted `media/logo.svg`, `media/logo-1.svg`, `assets/logo.svg`, `frontend/public/*.svg`. |
-| Standalone site | ✅ Shipped + fixed | `CuraOS_Website/` pure HTML/CSS/JS, no Next.js. Private `c7d7914` → `bc25f58` (logo fix), public `eeafd0e` → `97e22d5` (logo fix). |
+| Standalone site | ✅ Shipped + fixed + IHMS/pricing | `CuraOS_Website/` pure HTML/CSS/JS — now `price-cura-*/ihms` badges live via `js/main.js` `GET /api/v1/public/pricing/?country=XX` + flagship `CuraOS-IHMS` $5,000/mo + currency selector; private `c7d7914` → `bc25f58` → `HEAD`, public `eeafd0e` → `97e22d5` → `HEAD`. |
 | Pastel system (site + app) | ✅ Shipped | `frontend/src/app/globals.css:4` `@theme inline` `pastel-sky #EAF4FF` `pastel-lavender #F4EAFE` `pastel-base #FBFBFE` `brand-dark #0F172A` + `.bg-brand-pastel` gradient + `.shadow-floating-card`; mirrored in `CuraOS_Website/css/style.css:1` `:root` same tokens. |
+| **Regional pricing** | ✅ **Shipped** | `tenants/CountryPricingTier` + `GET /api/v1/public/pricing/` (GeoIP `CF_IPCOUNTRY` fallback USD 49/5000) + `fetchPublicPricing()` live badges + `/admin/platform/pricing` matrix; `docs/MARKETING_WEBSITE_SPEC.md` |
+| **IHMS flagship** | ✅ **Shipped** | `CuraOS-IHMS` Enterprise $5,000/mo USD (regional BDT/INR/GBP/EUR via DB) — hero `frontend/src/app/page.tsx:1` + `CuraOS_Website/index.html:50` + `frontend/src/app/pricing/page.tsx:1` |
+| **Copy scrub** | ✅ **Shipped** | Benefit copy `One Unified Operating System…` not primitives/hex; footer `Seamless clinical workflow` not `#EAF4FF` |
 | Private source of truth | ✅ `a44459d` | `https://github.com/verioralabs/CuraOS` `main` `origin/main` |
 | Public Pages deploy | ✅ `eeafd0e` | `https://github.com/verioralabs/Website-Hositng-CuraOS.Health` `main` `origin/main` cloned to `C:\Users\zaref\AppData\Local\Temp\opencode\public_site` → live at `https://curaos.health` + `https://verioralabs.github.io/Website-Hositng-CuraOS.Health/` |
 | Ops logs | ✅ Updated | `docs/PWA_APPS_OPERATIONS_LOG.md` §12, `docs/AI_REPOSITORY_CONTEXT.md` §3 diagram, `README.md:15` AI Collaborators reference |
@@ -71,8 +74,16 @@ Private repo mirrors:
   frontend/public/media/logo.png          821921  alias
   frontend/public/CuraOS_Logo-D.png       821921  alias at root
   [DELETED] frontend/public/media/logo.svg, frontend/public/logo.svg 3518
+  backend/apps/tenants/models.py:642 CountryPricingTier + admin + migration 0021
+  backend/apps/tenants/views_pricing.py  public_pricing GeoIP + fallback + admin CRUD
+  backend/config/urls.py:65          public + admin pricing routes
+  frontend/src/lib/billing.ts:28     fetchPublicPricing()
+  frontend/src/app/page.tsx:1        dynamic pricing + IHMS flagship + benefit copy scrub
+  frontend/src/app/pricing/page.tsx:1 dynamic module + IHMS + currency selector
+  frontend/src/app/admin/platform/pricing/page.tsx  superadmin matrix
   docs/AI_REPOSITORY_CONTEXT.md     dual-repo diagram + GH_PAGES_DEPLOY_TOKEN
-  docs/PWA_APPS_OPERATIONS_LOG.md   §1 / §12 + inventory now lists CuraOS_Website
+  docs/MARKETING_WEBSITE_SPEC.md    product + pricing arch + copy guidelines (no jargon)
+  docs/PWA_APPS_OPERATIONS_LOG.md   §1 / §13 + inventory now lists pricing
   website_log.md (this file)        resume entrypoint
 ```
 
