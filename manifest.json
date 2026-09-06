@@ -1,0 +1,13 @@
+{
+  "name": "CuraOS — Hospital Operating System",
+  "short_name": "CuraOS",
+  "description": "CuraOS by Veriora Labs — hospital, pharmacy, lab and queue management PWA.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "media/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "media/logo.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
