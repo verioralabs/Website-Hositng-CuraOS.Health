@@ -2,7 +2,7 @@
 
 > **Purpose:** one file to resume any website work instantly — where the code lives, where it deploys, what the design system is, what git was done, and the exact commands to verify/publish. Update this file on every `CuraOS_Website/` or logo/design change. Related: `docs/AI_REPOSITORY_CONTEXT.md`, `docs/PWA_APPS_OPERATIONS_LOG.md` §12.
 
-Last updated: **2026-09-06** · Private `verioralabs/CuraOS` HEAD **`bc25f58`** (site fix `c7d7914` → `bc25f58`) · Public `verioralabs/Website-Hositng-CuraOS.Health` **`97e22d5`** (prev `eeafd0e`) · Branch `main` both. Logo fixed: `CuraOS_Logo-D.png` 821KB replaces corrupted `logo.svg` 3518.
+Last updated: **2026-09-06** · Private `verioralabs/CuraOS` HEAD **`e27eecf`** (logo E + PWA redirect) · Public `verioralabs/Website-Hositng-CuraOS.Health` **`87f9216`** · Branch `main` both. Logo now `CuraOS_Logo-E.png` 928981 header `brand-logo flex` `h-10 w-auto object-contain`, marketing `Install App` → `https://app.curaos.health/?install=true`, manifest `start_url: https://app.curaos.health/`.
 
 ## TL;DR Resume
 
@@ -176,10 +176,10 @@ npm run build                     # 136 routes
 $env:NEXT_STATIC_EXPORT="1"; npm run build  # out/index.html contains bg-brand-pastel
 Remove-Item Env:\NEXT_STATIC_EXPORT
 npx playwright test --list        # 12 specs
-# site specific — FIXED to PNG 821921 (was corrupted SVG 3518)
-Select-String -Path CuraOS_Website/index.html -Pattern 'CuraOS_Logo-D.png'       # header + hero (5 refs)
+# site specific — E is canonical 928981 (D was 821921, SVG was 3518 corrupted)
+Select-String -Path CuraOS_Website/index.html -Pattern 'CuraOS_Logo-E.png'       # header + hero + manifest (6 refs, now E)
 Select-String -Path CuraOS_Website/css/style.css -Pattern 'EAF4FF|pastel'    # tokens
-Test-Path CuraOS_Website/media/CuraOS_Logo-D.png; Test-Path CuraOS_Website/assets/CuraOS_Logo-D.png; Test-Path frontend/public/media/CuraOS_Logo-D.png  # all 821921
+Test-Path CuraOS_Website/media/CuraOS_Logo-E.png; Test-Path CuraOS_Website/assets/CuraOS_Logo-E.png; Test-Path frontend/public/media/CuraOS_Logo-E.png  # all 928981
 # public Pages live check (after push, ~30s)
 curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 ```
@@ -193,6 +193,17 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 | Public Pages 404 / old content | Check `C:\Temp\public_site` push succeeded (`7730dea..eeafd0e`), verify Pages source is `main` `/ (root)`, hard refresh (`Ctrl+F5`), purge SW `CuraOS_Website/sw.js` version bump |
 | Logo not updating on App | Hard copy: `Copy-Item CuraOS_Website/assets/CuraOS_Logo-D.png CuraOS_Website/media/CuraOS_Logo-D.png -Force; Copy-Item CuraOS_Website/assets/CuraOS_Logo-D.png frontend/public/media/CuraOS_Logo-D.png -Force` + `npm run build` — do NOT re-create `logo.svg` 3518 (deleted in bc25f58, was corrupted) |
 | Want to revert website | `git log --oneline CuraOS_Website` → `git checkout c7d7914 -- CuraOS_Website` |
+| Marketing Install installs marketing not app | Fixed `CuraOS_Website/js/main.js` now `window.location.href="https://app.curaos.health/?install=true"` + `manifest start_url https://app.curaos.health/` — SaaS `PwaInstallPrompt.tsx` auto-handles `?install=true` |
+
+---
+
+## 11. 2026-09-06 — Logo E Binding, Cache-Bust & SaaS PWA Redirect (this change)
+
+- **Logo E:** `CuraOS_Website/media/CuraOS_Logo-E.png` 928981 (user pasted correct) now header `CuraOS_Website/index.html:21` `<a href="/" class="brand-logo flex items-center"><img src="media/CuraOS_Logo-E.png" alt="CuraOS Health" class="h-10 w-auto object-contain" /></a>` — force-staged `git add -f media/*` (verify `git check-ignore` was clean but forced), mirrored to `frontend/public/media/CuraOS_Logo-E.png` + `frontend/public/CuraOS_Logo-E.png`.
+- **Cache-bust:** `index.html:15` `css/style.css?v=1.0.2` + `:350` `js/main.js?v=1.0.2` (was unversioned) ensures GH Pages CDN refresh; `sw.js:2` precache updated to `media/CuraOS_Logo-E.png` + versioned css/js.
+- **PWA SaaS redirect:** `CuraOS_Website/js/main.js:37` `handleInstall()` → `SAAS_URL="https://app.curaos.health/?install=true"; window.location.href=SAAS_URL` (was `deferred.prompt()` installing marketing). `CuraOS_Website/manifest.json:5` `start_url: https://app.curaos.health/` + `scope "/"` (was `/`, now opens SaaS dashboard not landing). `frontend/src/components/pwa/PwaInstallPrompt.tsx:41` adds `autoHandled` + `useEffect` on `?install=true` — iOS shows modal, else auto `deferred.prompt()` + `outcome === 'accepted'`.
+- **Public sync root check:** `robocopy CuraOS_Website/* → public_site/` verified `ls public_site` shows `index.html` at root (not nested `CuraOS_Website/`), `git status` in `public_site` shows `A media/CuraOS_Logo-E.png` at root, pushed `87f9216` (`d565029..87f9216`).
+- **Verify:** `Test-Path CuraOS_Website/media/CuraOS_Logo-E.png` 928981 `git add -f`, `curl -I https://raw.githubusercontent.com/.../main/media/CuraOS_Logo-E.png` 200 OK, `curl -s https://verioralabs.github.io/Website-Hositng-CuraOS.Health/ | Select-String "CuraOS_Logo-E"` 200 + flagship, `curl .../js/main.js | Select-String "app.curaos.health"` SAAS_URL present, private `e27eecf` + public `87f9216` in `docs/PWA_APPS_OPERATIONS_LOG.md` §14.
 
 ---
 *This log is the resume entrypoint — if you need deep history, see `docs/PWA_APPS_OPERATIONS_LOG.md` §1-§12, `docs/AI_REPOSITORY_CONTEXT.md`, and `git log --oneline` above. Keep this file as the first file you open.*
