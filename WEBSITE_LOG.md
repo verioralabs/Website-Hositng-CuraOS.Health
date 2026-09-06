@@ -214,3 +214,9 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 - **Cache-bust:** `index.html:15` `css/style.css?v=1.0.3` + `js/main.js?v=1.0.3` (was v1.0.2), `sw.js:1` `CACHE 'curaos-site-v2'` (was v1) + precache `media/CuraOS_Logo-F.png` + versioned css/js. `manifest.json` still `start_url: https://app.curaos.health/`.
 - **Public sync:** `robocopy CuraOS_Website/* -> public_site/` root check passed (`index.html` at root, `media/CuraOS_Logo-F.png` 136293), `git add -f` + commit `b27bebf fix(website): bind header to media/CuraOS_Logo-F.png (136KB latest), cache-bust v1.0.3 + SW v2` -> `git push origin main` `d565029..b27bebf`, live `curl -s https://verioralabs.github.io/Website-Hositng-CuraOS.Health/ | grep CuraOS_Logo-F.png` 200, `js/main.js` still `SAAS_URL https://app.curaos.health/?install=true`.
 - **Verify:** `Test-Path` 136293, `Select-String` header shows `CuraOS_Logo-F.png`, `curl -I raw/.../media/CuraOS_Logo-F.png` 200, private `699c2d4` + public `b27bebf` logged here; also `ea4e663` pricing + `e27eecf` PWA redirect still intact.
+
+## 13. 2026-09-06 — media/logo.png Canonical (user cleaned media/, only logo.png 136293 remains)
+
+- **Fix:** `CuraOS_Website/index.html` all 7 refs now `media/logo.png` (was `CuraOS_Logo-F.png`); `manifest.json:10` + `sw.js:2` same; `index.html:15` `v1.0.4` + `sw.js:1` `curaos-site-v3` force browsers to reload (old cache was the reported issue).
+- **Git:** private `bce1e19` (deletes tracked `media/D/E/F`) -> push; public `62c9a7c` (same deletions, exact root mirror) -> push. Live `media/logo.png` 200 136293 verified.
+- **Note:** `CuraOS_Website/assets/` still holds `CuraOS_Logo-D.png` + `CuraOS_Logo-F.png` + `logo.png` as archive (user only cleaned `media/`); `frontend/public/media/logo.png` already 136293 in sync.
