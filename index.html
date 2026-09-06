@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CuraOS — Hospital Operating System by Veriora Labs</title>
+  <meta name="description" content="CuraOS — Intelligent Healthcare Operating System by Veriora Labs. The hospital OS that chains clinical actions to double-entry accounting — pharmacy COGS, surgical margins, doctor payouts, and departmental P&L.">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="media/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="media/logo.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#" class="brand" aria-label="CuraOS home">
+        <img src="media/logo.svg" alt="CuraOS — Hospital Operating System" class="brand-logo">
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#modules">Modules</a>
+        <a href="#platform">Platform</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#pwa">PWA</a>
+        <a href="https://github.com/verioralabs/CuraOS" target="_blank" rel="noreferrer">Docs</a>
+      </nav>
+      <div class="topbar-actions">
+        <button id="pwaInstallBtn" class="btn btn-dark btn-sm" style="display:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+          Install App
+        </button>
+        <a href="#pricing" class="btn btn-primary">Get Started</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#modules">Modules</a>
+      <a href="#platform">Platform</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#pwa">PWA</a>
+      <a href="#pricing" class="btn btn-primary">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Hero - pastel gradient -->
+  <section class="hero bg-brand-pastel">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="badge">
+          <span class="dot"></span>
+          Enterprise HMIS · PWA + native shells · curaos.health
+        </div>
+        <h1 class="hero-title">One operating<br>system for the<br>entire hospital.</h1>
+        <p class="hero-desc">
+          CuraOS — Intelligent Healthcare Operating System by Veriora Labs. A high-speed HMIS that chains every clinical action to real double-entry accounting — pharmacy COGS, surgical costing, doctor payout splits and departmental net margins.
+        </p>
+        <div class="hero-cta">
+          <a href="#modules" class="btn btn-primary btn-lg">Explore Modules →</a>
+          <a href="#pricing" class="btn btn-ghost btn-lg">See pricing</a>
+          <button id="heroInstallBtn" class="btn btn-dark btn-lg" style="display:none">Install App</button>
+        </div>
+        <div class="hero-meta">
+          <span><strong>136</strong> routes · 4 admin consoles</span>
+          <span class="sep">·</span>
+          <span>Tenant-isolated · Audit-proof</span>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-card shadow-floating-card">
+          <img src="media/logo.svg" alt="CuraOS Hospital Operating System" class="hero-logo">
+          <div class="hero-card-stats">
+            <div class="stat">
+              <div class="stat-icon" style="background:#EAF4FF">🏥</div>
+              <div><strong>30-day</strong> demo data<br><span>240 patients · FEFO · TAT</span></div>
+            </div>
+            <div class="stat">
+              <div class="stat-icon" style="background:#F4EAFE">📊</div>
+              <div><strong>Double-entry</strong> ledger<br><span>COGS · margins · payouts</span></div>
+            </div>
+          </div>
+          <div class="hero-preview">
+            <div class="preview-bar">
+              <span class="live-dot"></span> Live PWA — Tap Install App to add to Home Screen
+            </div>
+            <img src="media/logo.svg" alt="" class="preview-img" style="opacity:0.08; position:absolute; right:12px; top:8px; width:86px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof / badges -->
+  <section class="badges-section">
+    <div class="container badges">
+      <span class="badge-pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Tenant-isolated schemas</span>
+      <span class="badge-pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.7.7l3.6 3.6A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="m9 15 2 2 4-4"/></svg> Immutable audit trail</span>
+      <span class="badge-pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6" y2="6"/><line x1="6" y1="18" x2="6" y2="18"/></svg> Self-hostable · Docker</span>
+      <span class="badge-pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> RBAC + purpose-built guards</span>
+    </div>
+  </section>
+
+  <!-- Modules -->
+  <section id="modules" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Start with one module. Scale to the full OS.</h2>
+        <p>Each module is a standalone product — bring your pharmacy, solo clinic, lab, or queue system online in a day, then light up the enterprise suite when ready.</p>
+      </div>
+      <div class="grid grid-2">
+        <a href="#" class="card shadow-floating-card">
+          <div class="card-top">
+            <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></span>
+            <span class="price">$49/mo</span>
+          </div>
+          <h3>CuraOS-Rx</h3>
+          <p class="tag">PHARMACY OS</p>
+          <p class="desc">FEFO inventory, dispensing queue, POS counters, supplier POs — gross sales, net margin, drawer + low-stock & expiry alerts.</p>
+          <span class="card-cta">Open Rx Admin →</span>
+        </a>
+        <a href="#" class="card shadow-floating-card">
+          <div class="card-top">
+            <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></span>
+            <span class="price">$49/mo</span>
+          </div>
+          <h3>CuraOS-Doctor</h3>
+          <p class="tag">SOLO PRACTITIONER OS</p>
+          <p class="desc">Rapid charting, ambient scribe, eRx, OPD queue, telehealth — today's revenue, OPD, telehealth + active EMRs.</p>
+          <span class="card-cta">Open Doctor Admin →</span>
+        </a>
+        <a href="#" class="card shadow-floating-card">
+          <div class="card-top">
+            <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg></span>
+            <span class="price">$49/mo</span>
+          </div>
+          <h3>CuraOS-Labs</h3>
+          <p class="tag">DIAGNOSTIC CENTER OS</p>
+          <p class="desc">LIMS queue, analyzer QC, TAT tracking, report governance — throughput, avg TAT, analyzer + critical alerts.</p>
+          <span class="card-cta">Open Labs Admin →</span>
+        </a>
+        <a href="#" class="card shadow-floating-card">
+          <div class="card-top">
+            <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <span class="price">$49/mo</span>
+          </div>
+          <h3>CuraOS-WaitList</h3>
+          <p class="tag">QUEUE MANAGEMENT OS</p>
+          <p class="desc">Token engine, TV display boards, room mapping, SMS triggers — avg wait, serving token, live preview.</p>
+          <span class="card-cta">Open WaitList Admin →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform -->
+  <section id="platform" class="section bg-brand-pastel">
+    <div class="container">
+      <div class="section-head">
+        <h2>The OS behind the modules.</h2>
+        <p>Four primitives — clinical, supply, money, identity — kept in sync by an entitlement-driven shell and soft-pastel design system (#EAF4FF · #F4EAFE · #FFFFFF · #0F172A).</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="feature-card shadow-floating-card">
+          <div class="feature-icon">⌨️</div>
+          <h3>1-Click Clinical</h3>
+          <p>Keyboard-first doctor workspace with hotkey prescribing, ambient scribe SSE, and junior-doctor guardrails. One tap from OPD to eRx.</p>
+        </div>
+        <div class="feature-card shadow-floating-card">
+          <div class="feature-icon">🧾</div>
+          <h3>Double-Entry COGS Ledger</h3>
+          <p>Pharmacy stock moves create real accounting entries. Every dispense posts COGS, supplier PO posts inventory, payout posts payable — auditable.</p>
+        </div>
+        <div class="feature-card shadow-floating-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Multi-Tenant Isolation</h3>
+          <p>Postgres schemas per hospital, role-scoped APIs (`ROLE_SUPER_ADMIN` / `ROLE_MODULE_ADMIN`), soft-deletes + tombstone erasure, WORM backup chain.</p>
+        </div>
+      </div>
+      <div class="platform-strip shadow-floating-card">
+        <div class="strip-item"><strong>AppShell</strong><span>Workspace switcher · Chain bar</span></div>
+        <div class="strip-item"><strong>PWA Install</strong><span>beforeinstallprompt · iOS modal</span></div>
+        <div class="strip-item"><strong>Offline WAL</strong><span>IndexedDB · X-Offline-Synced-At</span></div>
+        <div class="strip-item"><strong>Design</strong><span>pastel-sky · pastel-lavender</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Transparent pricing. No per-seat tax.</h2>
+        <p>Start free with the static marketing site, pay only when you go live on `curaos.health`. Entitlements gated by `active_modules`.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="pricing-card shadow-floating-card">
+          <h3>Starter</h3>
+          <div class="price-row"><span class="amount">$0</span><span class="period">/ forever</span></div>
+          <p class="pricing-desc">Static site + PWA shell + download hub. Perfect for evaluation.</p>
+          <ul>
+            <li>✓ PWA manifest + SW + icons</li>
+            <li>✓ Marketing + pricing + download</li>
+            <li>✓ Community docs</li>
+          </ul>
+          <a href="#" class="btn btn-ghost wide">Start free</a>
+        </div>
+        <div class="pricing-card featured shadow-floating-card">
+          <div class="featured-badge">Most popular</div>
+          <h3>Module</h3>
+          <div class="price-row"><span class="amount">$49</span><span class="period">/ module / mo</span></div>
+          <p class="pricing-desc">One standalone OS — Rx, Doctor, Labs, or WaitList. All KPIs + RoleGuard.</p>
+          <ul>
+            <li>✓ Module Super Admin console</li>
+            <li>✓ FEFO / TAT / TV display etc.</li>
+            <li>✓ PWA Install + offline queue</li>
+          </ul>
+          <a href="#" class="btn btn-primary wide">Choose module</a>
+        </div>
+        <div class="pricing-card shadow-floating-card">
+          <h3>Enterprise</h3>
+          <div class="price-row"><span class="amount">$199</span><span class="period">/ mo</span></div>
+          <p class="pricing-desc">Full OS — Enterprise Overview + all four modules + tenant entailment.</p>
+          <ul>
+            <li>✓ Workspace switcher pill</li>
+            <li>✓ MRR/ARR/churn dashboards</li>
+            <li>✓ Priority support + SLAs</li>
+          </ul>
+          <a href="#" class="btn btn-ghost wide">Contact sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PWA section -->
+  <section id="pwa" class="section bg-brand-pastel">
+    <div class="container pwa-grid">
+      <div>
+        <h2>Install CuraOS like a native app.</h2>
+        <p>No App Store. One tap on <strong>curaos.health</strong> — our PWA gives you push, offline queue, and standalone shell on iOS + Android + Desktop.</p>
+        <ul class="pwa-steps">
+          <li><span class="step-n">1</span> Tap <strong>Install App</strong> in the header</li>
+          <li><span class="step-n">2</span> iOS: Share icon → <strong>Add to Home Screen</strong></li>
+          <li><span class="step-n">3</span> Android/Desktop: Accept the browser prompt</li>
+        </ul>
+        <div class="pwa-actions">
+          <button id="pwaInstallInline" class="btn btn-dark">Install App</button>
+          <span class="pwa-hint" id="pwaHint">Works offline after install</span>
+        </div>
+      </div>
+      <div class="pwa-visual shadow-floating-card">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <img src="media/logo.svg" alt="CuraOS" class="phone-logo">
+          <div class="phone-bar">CuraOS — Hospital Operating System</div>
+          <div class="phone-screen bg-brand-pastel">
+            <div class="phone-card shadow-floating-card">Gross Sales — ৳12,480</div>
+            <div class="phone-card shadow-floating-card">Avg Wait — 14 min · Serving A-042</div>
+            <div class="phone-card shadow-floating-card">TAT — 1.8h · 6 pending</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="media/logo.svg" alt="CuraOS" class="footer-logo">
+        <p>CuraOS — Intelligent Healthcare Operating System by Veriora Labs.<br>Dual-repo: <code>verioralabs/CuraOS</code> (source) → <code>verioralabs/Website-Hositng-CuraOS.Health</code> (Pages).</p>
+        <p class="muted">Workflow: <code>NEXT_STATIC_EXPORT=1 npm run build → out/ → GH_PAGES_DEPLOY_TOKEN</code></p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="#modules">Modules</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#platform">Platform</a>
+        <a href="#pwa">Install</a>
+      </div>
+      <div>
+        <h4>Developers</h4>
+        <a href="https://github.com/verioralabs/CuraOS">Private CuraOS</a>
+        <a href="https://github.com/verioralabs/Website-Hositng-CuraOS.Health">Public Hosting</a>
+        <a href="https://curaos.health">curaos.health</a>
+        <a href="docs/AI_REPOSITORY_CONTEXT.md">AI Context</a>
+      </div>
+      <div>
+        <h4>Veriora Labs</h4>
+        <a href="https://www.verioralabs.com" target="_blank" rel="noreferrer">verioralabs.com</a>
+        <span class="muted">© 2026 Veriora Labs. All rights reserved.</span>
+        <span class="muted">Web-first · PWA · Soft pastel #EAF4FF · #F4EAFE</span>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>Built from <code>CuraOS_Website/</code> in private repo → pushed to public Pages. See <code>docs/AI_REPOSITORY_CONTEXT.md</code>.</span>
+    </div>
+  </footer>
+
+  <!-- iOS Modal (global) -->
+  <div id="iosModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="iosTitle">
+    <div class="modal-card shadow-floating-card">
+      <button class="modal-close" id="iosClose" aria-label="Close">×</button>
+      <h3 id="iosTitle">Install CuraOS on iOS</h3>
+      <p>Add CuraOS to your Home Screen for a native-like app experience from <strong>curaos.health</strong> — no App Store needed.</p>
+      <ol>
+        <li><span class="modal-icon">⎙</span><div><strong>1. Tap the Share icon</strong><br><span>In Safari's bottom bar, tap the Share icon.</span></div></li>
+        <li><span class="modal-icon">⊞</span><div><strong>2. Tap “Add to Home Screen”</strong><br><span>Scroll and tap Add to Home Screen, then confirm.</span></div></li>
+      </ol>
+      <button class="btn btn-dark wide" id="iosGotIt">Got it</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
