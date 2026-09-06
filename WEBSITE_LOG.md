@@ -207,3 +207,10 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 
 ---
 *This log is the resume entrypoint — if you need deep history, see `docs/PWA_APPS_OPERATIONS_LOG.md` §1-§12, `docs/AI_REPOSITORY_CONTEXT.md`, and `git log --oneline` above. Keep this file as the first file you open.*
+
+## 12. 2026-09-06 — Logo-F (136KB) Latest & Cache-Busted Public Deploy (this change — replaces E 928981)
+
+- **Logo F:** `CuraOS_Website/media/CuraOS_Logo-F.png` 136293 (latest, 928981 E was previous) now canonical — header still `<a href='/' class='brand-logo flex items-center'><img src='media/CuraOS_Logo-F.png' alt='CuraOS Health' class='h-10 w-auto object-contain' /></a>` but asset swapped E→F via `Copy-Item media/CuraOS_Logo-F.png -> assets/CuraOS_Logo-F.png / media/logo.png / frontend/public/media/CuraOS_Logo-F.png` etc. Old E/D kept for history but not referenced. Force-staged `git add -f media/CuraOS_Logo-F.png`.
+- **Cache-bust:** `index.html:15` `css/style.css?v=1.0.3` + `js/main.js?v=1.0.3` (was v1.0.2), `sw.js:1` `CACHE 'curaos-site-v2'` (was v1) + precache `media/CuraOS_Logo-F.png` + versioned css/js. `manifest.json` still `start_url: https://app.curaos.health/`.
+- **Public sync:** `robocopy CuraOS_Website/* -> public_site/` root check passed (`index.html` at root, `media/CuraOS_Logo-F.png` 136293), `git add -f` + commit `b27bebf fix(website): bind header to media/CuraOS_Logo-F.png (136KB latest), cache-bust v1.0.3 + SW v2` -> `git push origin main` `d565029..b27bebf`, live `curl -s https://verioralabs.github.io/Website-Hositng-CuraOS.Health/ | grep CuraOS_Logo-F.png` 200, `js/main.js` still `SAAS_URL https://app.curaos.health/?install=true`.
+- **Verify:** `Test-Path` 136293, `Select-String` header shows `CuraOS_Logo-F.png`, `curl -I raw/.../media/CuraOS_Logo-F.png` 200, private `699c2d4` + public `b27bebf` logged here; also `ea4e663` pricing + `e27eecf` PWA redirect still intact.
