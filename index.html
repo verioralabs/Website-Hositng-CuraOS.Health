@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=2.1">
+  <link rel="stylesheet" href="css/style.css?v=2.2">
 </head>
 <body>
   <!-- Topbar -->
@@ -30,13 +30,31 @@
       </nav>
       <div class="topbar-actions">
         <label for="currencySelect" class="sr-only">Currency</label>
-        <select id="currencySelect" class="btn btn-ghost btn-sm" style="padding:6px 8px;background:white" title="Choose currency">
+        <select id="currencySelect" class="form-select btn btn-ghost btn-sm" style="padding:6px 8px;background:white" title="Choose currency">
           <option value="auto">Auto (GeoIP)</option>
-          <option value="US">USD — United States</option>
-          <option value="BD">BDT — Bangladesh (৳)</option>
-          <option value="IN">INR — India (₹)</option>
-          <option value="GB">GBP — United Kingdom (£)</option>
-          <option value="DE">EUR — Europe (€)</option>
+          <optgroup label="Tier 1: Global Reserve & Major Markets">
+            <option value="US">USD — United States ($)</option>
+            <option value="EU">EUR — Eurozone (€)</option>
+            <option value="GB">GBP — United Kingdom (£)</option>
+            <option value="JP">JPY — Japan (¥)</option>
+            <option value="CA">CAD — Canada (CA$)</option>
+            <option value="AU">AUD — Australia (A$)</option>
+            <option value="NZ">NZD — New Zealand (NZ$)</option>
+            <option value="SG">SGD — Singapore (S$)</option>
+          </optgroup>
+          <optgroup label="Tier 2: Middle East & Asia-Pacific">
+            <option value="AE">AED — UAE Dirham (AED)</option>
+            <option value="SA">SAR — Saudi Riyal (SAR)</option>
+            <option value="MY">MYR — Malaysian Ringgit (RM)</option>
+            <option value="TH">THB — Thai Baht (฿)</option>
+          </optgroup>
+          <optgroup label="Tier 3: Emerging & Regional Markets">
+            <option value="ZA">ZAR — South Africa (R)</option>
+            <option value="NG">NGN — Nigeria (₦)</option>
+            <option value="KE">KES — Kenya (KSh)</option>
+            <option value="IN">INR — India (₹)</option>
+            <option value="BD">BDT — Bangladesh (৳)</option>
+          </optgroup>
         </select>
         <button id="pwaInstallBtn" class="btn btn-dark btn-sm" style="display:none">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
@@ -428,6 +446,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=2.1"></script>
+  <script src="js/main.js?v=2.2"></script>
 </body>
 </html>

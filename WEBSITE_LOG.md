@@ -253,3 +253,10 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 
 - **Backend:** 3 Boolean flags + 3 Feature slugs + 4 models (QCControl/QCRun/DynamicRange/Specimen) + 6 endpoints (config/specimens/transition/qc controls+runs/reference-ranges) + migrations 0022/0023.
 - **Frontend:** `/labs/specimens` barcoding (QR/Code128, 5-state workflow, printable), `/labs/qc` L-J chart + Westgard, `/labs/reference-ranges` matrix + auto-evaluate, `/labs/admin` links + tier badge. Private `191bfa0`.
+
+## 18. 2026-09-06 — WaitList Smart Flow + Revenue Recovery + Global Currency (this change — 3-in-1)
+
+- **Currency:** 3-tier dropdown (Tier1 US/EU/GB/JP/CA/AU/NZ/SG + Tier2 AE/SA/MY/TH + Tier3 ZA/NG/KE/IN/BD) in `CuraOS_Website/index.html:32` + `frontend/src/app/page.tsx:88` + `pricing` + backend `REGIONAL_SEED` 13 new (JP ¥7k/750k, MY RM200/22k, etc.) + `_tiers_for_country` fallback + `js/main.js` `REGIONAL_FALLBACK` + `formatPrice` handles all via `Intl`. Private `ea4e663` pricing still intact, now stratified.
+- **Flow:** `/waitlist/checkin?facility=XX` QR self-check-in (Name/Phone/Doctor → `A-104` + `/waitlist/ticket/[id]` live bar), `WaitlistFlowToken` 5 stages (RECEPTION→PHARMACY) + 3 priorities, `/waitlist/ticket/[id]` (poll 5s, `2 ahead`) via `layout generateStaticParams demo` for static export, `/waitlist/tv` split 60/40 glass + `window.speechSynthesis` `Token A-104 please proceed...`.
+- **Revenue:** `WaitlistEntry` + `FlashSlot` (<120min 15% off, first-come claim `YES`), `PostCareFeedback` (2h 1–5 stars → ≥4 Google review + 4-week follow-up), `waitlist_ai_reschedule` Gemini 1.5 Flash stub (`POST /api/v1/waitlist/ai-chat/` via `waitlist_ai_reschedule`), WhatsApp `POST /v18.0/messages` stub (`/opd/flow/broadcast/whatsapp/` 200 queued) + Telegram, Calendar sync hooks (Django signals on `Appointment.CANCELLED` → `trigger_waitlist_recovery` + Google/Outlook webhook).
+- **Verify:** `python manage.py check` 0, `npx tsc --noEmit` 0, `npm run build` 144 routes (was 139), `NEXT_STATIC_EXPORT=1` ok (`/waitlist/ticket/demo`), `npx playwright test --list` 14 specs.
