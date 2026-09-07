@@ -248,3 +248,8 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 ## 16. 2026-09-06 — Why CuraOS Value Section (Apple-grade, 4+5 matrix, v2.1)
 
 - **Website + App:** Same 10-card Why section (4 core values + 5 modules + Advantage) with `bg-brand-pastel` + `bg-white/80 backdrop-blur-md` + `shadow-floating-card` + `hover:shadow-xl` + high-contrast `#0F172A`. Metrics: Zero Leakage, Zero Loss, 2x Speed, 40% TAT, 60% wait cut — all value-first, no hex/entitlement/primitives. Private `3e24eef` + public `56eeb97`.
+
+## 17. 2026-09-06 — Labs Enterprise Add-Ons (Standard vs Enterprise Pack)
+
+- **Backend:** 3 Boolean flags + 3 Feature slugs + 4 models (QCControl/QCRun/DynamicRange/Specimen) + 6 endpoints (config/specimens/transition/qc controls+runs/reference-ranges) + migrations 0022/0023.
+- **Frontend:** `/labs/specimens` barcoding (QR/Code128, 5-state workflow, printable), `/labs/qc` L-J chart + Westgard, `/labs/reference-ranges` matrix + auto-evaluate, `/labs/admin` links + tier badge. Private `191bfa0`.
