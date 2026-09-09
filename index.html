@@ -417,6 +417,48 @@
     </div>
   </section>
 
+  <section id="onprem-guide" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>On-Premise Local Storage Integration Guide</h2>
+        <p>CuraOS connects directly to client-owned hardware with an S3-compatible containerized MinIO engine on the hospital LAN. Full handoff doc: <code>docs/ON_PREMISE_STORAGE_GUIDE.md</code>.</p>
+      </div>
+      <div class="feature-card shadow-floating-card" style="max-width:860px;margin:0 auto;text-align:left">
+        <h3>Hardware &amp; Operating System Requirements</h3>
+        <table style="width:100%;font-size:13px;border-collapse:collapse">
+          <tr style="border-bottom:1px solid #e2e8f0"><th style="text-align:left;padding:6px">Component</th><th style="text-align:left;padding:6px">Minimum</th><th style="text-align:left;padding:6px">Enterprise Recommendation</th></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px">OS</td><td style="padding:6px" colspan="2">Ubuntu Server 24.04 LTS or Debian 12 (64-bit)</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px">CPU</td><td style="padding:6px">4-core x86_64</td><td style="padding:6px">8-core (Intel Xeon / Core i7 / AMD EPYC)</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px">RAM</td><td style="padding:6px">8 GB</td><td style="padding:6px">16 GB ECC</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px">Storage</td><td style="padding:6px">500 GB SSD</td><td style="padding:6px">1 TB Enterprise NVMe (RAID 1 recommended)</td></tr>
+          <tr><td style="padding:6px">Network</td><td style="padding:6px" colspan="2">Static LAN IP + 1 Gbps Ethernet</td></tr>
+        </table>
+        <h3 style="margin-top:18px">Step 1 — OS &amp; Network Setup</h3>
+        <p>Install Ubuntu 24.04 LTS Server. Assign a static LAN IP (e.g. <code>192.168.1.100</code>). Install Docker Engine + Docker Compose.</p>
+        <h3>Step 2 — Deploy the Storage Engine Container</h3>
+        <pre style="background:#0f172a;color:#e2e8f0;padding:12px;border-radius:10px;font-size:12px;overflow-x:auto">version: '3.8'
+services:
+  curaos-local-s3:
+    image: minio/minio:latest
+    container_name: curaos_local_storage
+    restart: always
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: "curaos_admin_access_key"
+      MINIO_ROOT_PASSWORD: "GENERATE_STRONG_SECRET_KEY"
+    volumes:
+      - /var/curaos/patient_data:/data</pre>
+        <h3 style="margin-top:18px">Step 3 — Connect to CuraOS</h3>
+        <p>Hand these to CuraOS Support (entered in the Platform storage console): Endpoint <code>http://192.168.1.100:9000</code> (or <code>https://storage.hospital.lan</code>) · Access Key <code>curaos_admin_access_key</code> · Secret Key <code>GENERATE_STRONG_SECRET_KEY</code> · Bucket <code>curaos-patient-data</code>. Click <strong>Test &amp; Verify</strong> — on Connected, DICOM, attachments, and vault documents write to local NVMe.</p>
+        <h3>Step 4 — Security &amp; Disaster Recovery</h3>
+        <p><strong>Encryption at rest:</strong> native AES-256 volumes. <strong>Firewall:</strong> 100% intranet, zero inbound public ports. <strong>Dual-sync (BD hybrid standard):</strong> real-time mirror to Backblaze B2 while the legal record stays in-facility.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-grid">
