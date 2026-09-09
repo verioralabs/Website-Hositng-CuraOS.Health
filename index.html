@@ -398,6 +398,25 @@
     </div>
   </section>
 
+  <section id="faq-onprem" class="section bg-brand-pastel">
+    <div class="container">
+      <div class="section-head">
+        <h2>On-Premise, Answered</h2>
+        <p>Data localization without re-platforming. Full IT handoff: <code>docs/ON_PREMISE_STORAGE_GUIDE.md</code>.</p>
+      </div>
+      <div class="feature-card shadow-floating-card" style="max-width:860px;margin:0 auto;text-align:left">
+        <h3>Is our system ready to provide all the things above for local installation?</h3>
+        <p><strong>Yes — CuraOS is 100% ready to support local on-premise server setups today.</strong> Because the platform uses a vendor-agnostic, standardized S3 adapter (django-storages + boto3), pointing the system to a client's local server requires zero code modifications.</p>
+        <p><strong>Universal S3 compatibility:</strong> CuraOS talks to any S3-compatible API. Pointing the media driver at a LAN IP (e.g. <code>http://192.168.1.100:9000</code> running MinIO) works identically to AWS or Backblaze B2.</p>
+        <p><strong>Custom endpoints in the Admin UI:</strong> the Platform Admin panel already has fields for Endpoint URL, Access Key, Secret Key, and Bucket Name.</p>
+        <p><strong>Live connection ping:</strong> Test &amp; Verify probes the LAN endpoint before onboarding — the badge flips to Connected only on success.</p>
+        <p><strong>Proven pattern:</strong> the same local-server engine runs the BD dual-storage deployment (hospital LAN + mandatory B2 mirror).</p>
+        <p><strong>Encryption &amp; portability:</strong> local uploads stay encrypted at rest (SSE-S3); moving local ⇄ cloud later uses the 4-stage zero-loss migration wizard.</p>
+        <p><strong>Onboarding:</strong> client installs Ubuntu 24.04 + the 1-click MinIO template → CuraOS staff paste the endpoint/keys into the Storage panel → Test &amp; Verify → DICOM, attachments, and vault documents route to local NVMe.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-grid">
