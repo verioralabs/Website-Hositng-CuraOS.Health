@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=2.2">
+  <link rel="stylesheet" href="css/style.css?v=2.3">
 </head>
 <body>
   <!-- Topbar -->
@@ -29,38 +29,52 @@
         <a href="https://github.com/verioralabs/CuraOS" target="_blank" rel="noreferrer">Docs</a>
       </nav>
       <div class="topbar-actions">
+        <label for="languageSelect" class="sr-only">Language</label>
+        <select id="languageSelect" class="form-select btn btn-ghost btn-sm" style="padding:6px 8px;background:white" title="Choose language">
+          <option value="en">🇺🇸 EN — English</option>
+          <option value="ja">🇯🇵 JA — 日本語</option>
+          <option value="ms">🇲🇾 MS — Bahasa Melayu</option>
+          <option value="id">🇮🇩 ID — Bahasa Indonesia</option>
+          <option value="ar">🇸🇦 AR — العربية</option>
+          <option value="es">🇪🇸 ES — Español</option>
+          <option value="de">🇩🇪 DE — Deutsch</option>
+          <option value="bn">🇧🇩 BN — বাংলা</option>
+          <option value="hi">🇮🇳 HI — हिन्दी</option>
+          <option value="ur">🇵🇰 UR — اردو</option>
+          <option value="sw">🇰🇪 SW — Kiswahili</option>
+        </select>
         <label for="currencySelect" class="sr-only">Currency</label>
         <select id="currencySelect" class="form-select btn btn-ghost btn-sm" style="padding:6px 8px;background:white" title="Choose currency">
-          <option value="auto">Auto (GeoIP)</option>
+          <option value="auto">🌐 Auto (GeoIP)</option>
           <optgroup label="Tier 1: Global Reserve & Major Markets">
-            <option value="US">USD — United States ($)</option>
-            <option value="EU">EUR — Eurozone (€)</option>
-            <option value="GB">GBP — United Kingdom (£)</option>
-            <option value="JP">JPY — Japan (¥)</option>
-            <option value="CA">CAD — Canada (CA$)</option>
-            <option value="AU">AUD — Australia (A$)</option>
-            <option value="NZ">NZD — New Zealand (NZ$)</option>
-            <option value="SG">SGD — Singapore (S$)</option>
+            <option value="US">🇺🇸 USD — United States ($)</option>
+            <option value="EU">🇪🇺 EUR — Eurozone (€)</option>
+            <option value="GB">🇬🇧 GBP — United Kingdom (£)</option>
+            <option value="JP">🇯🇵 JPY — Japan (¥)</option>
+            <option value="CA">🇨🇦 CAD — Canada (CA$)</option>
+            <option value="AU">🇦🇺 AUD — Australia (A$)</option>
+            <option value="NZ">🇳🇿 NZD — New Zealand (NZ$)</option>
+            <option value="SG">🇸🇬 SGD — Singapore (S$)</option>
           </optgroup>
           <optgroup label="Tier 2: Middle East & Asia-Pacific">
-            <option value="AE">AED — UAE Dirham (AED)</option>
-            <option value="SA">SAR — Saudi Riyal (SAR)</option>
-            <option value="MY">MYR — Malaysian Ringgit (RM)</option>
-            <option value="TH">THB — Thai Baht (฿)</option>
+            <option value="AE">🇦🇪 AED — UAE Dirham (AED)</option>
+            <option value="SA">🇸🇦 SAR — Saudi Riyal (SAR)</option>
+            <option value="MY">🇲🇾 MYR — Malaysian Ringgit (RM)</option>
+            <option value="TH">🇹🇭 THB — Thai Baht (฿)</option>
           </optgroup>
           <optgroup label="Tier 3: Emerging & Regional Markets">
-            <option value="ZA">ZAR — South Africa (R)</option>
-            <option value="NG">NGN — Nigeria (₦)</option>
-            <option value="KE">KES — Kenya (KSh)</option>
-            <option value="IN">INR — India (₹)</option>
-            <option value="BD">BDT — Bangladesh (৳)</option>
+            <option value="ZA">🇿🇦 ZAR — South Africa (R)</option>
+            <option value="NG">🇳🇬 NGN — Nigeria (₦)</option>
+            <option value="KE">🇰🇪 KES — Kenya (KSh)</option>
+            <option value="IN">🇮🇳 INR — India (₹)</option>
+            <option value="BD">🇧🇩 BDT — Bangladesh (৳)</option>
           </optgroup>
         </select>
         <button id="pwaInstallBtn" class="btn btn-dark btn-sm" style="display:none">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
           Install App
         </button>
-        <a href="#pricing" class="btn btn-primary">Get Started</a>
+        <a href="#pricing" class="btn btn-primary" id="i18n-getStarted">Get Started</a>
         <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -81,15 +95,15 @@
       <div class="hero-copy">
         <div class="badge">
           <span class="dot"></span>
-          Enterprise HMIS · PWA + native shells · curaos.health
+          Enterprise Hospital OS · PWA + native shells · curaos.health
         </div>
-        <h1 class="hero-title">One operating<br>system for the<br>entire hospital.</h1>
-        <p class="hero-desc">
-          CuraOS — Intelligent Healthcare Operating System by Veriora Labs. A high-speed HMIS that chains every clinical action to live single-entry finance tracking — charges, invoices, margins and payouts. Double-entry ledger on the roadmap.
+        <h1 class="hero-title" id="i18n-heroTitle">One operating<br>system for the<br>entire hospital.</h1>
+        <p class="hero-desc" id="i18n-heroDesc">
+          CuraOS — Intelligent Healthcare Operating System by Veriora Labs. A high-speed hospital operating system that chains every clinical action to live single-entry finance tracking — charges, invoices, margins and payouts. Double-entry ledger on the roadmap.
         </p>
         <div class="hero-cta">
-          <a href="#modules" class="btn btn-primary btn-lg">Explore Modules →</a>
-          <a href="#pricing" class="btn btn-ghost btn-lg">See pricing</a>
+          <a href="#modules" class="btn btn-primary btn-lg" id="i18n-exploreModules">Explore Modules →</a>
+          <a href="#pricing" class="btn btn-ghost btn-lg" id="i18n-seePricing">See pricing</a>
           <button id="heroInstallBtn" class="btn btn-dark btn-lg" style="display:none">Install App</button>
         </div>
         <div class="hero-meta">
@@ -129,6 +143,27 @@
       <span class="badge-pill">⚡ 99.99% Uptime Guarantee</span>
       <span class="badge-pill">🛡️ HIPAA & GDPR Ready</span>
       <span class="badge-pill">🚀 Zero-Config Deployment</span>
+    </div>
+  </section>
+
+  <!-- Flagship Enterprise Hospital OS (FIRST PACKAGE) -->
+  <section id="hospital-enterprise" class="section bg-brand-pastel" style="padding-bottom:24px">
+    <div class="container">
+      <div class="ihms-card">
+        <div class="ihms-badge">Flagship — CuraOS-Hospital (Enterprise)</div>
+        <h2 id="i18n-hospitalTitle">Enterprise Hospital Operating System</h2>
+        <p class="ihms-sub" id="i18n-hospitalSub">One platform for every department — run a 50-bed clinic or a 500-bed medical city on one OS.</p>
+        <div class="ihms-price" id="price-cura-ihms" data-module="cura-ihms">$5,000/mo</div>
+        <div class="ihms-note" id="ihmsCountryNote">US pricing · Auto-detected region · Switch currency above</div>
+        <ul class="ihms-grid">
+          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Multi-Department Sync</strong><span>Pharmacy, labs, nursing, OT in one ledger</span></div></li>
+          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Centralized Billing & EHR</strong><span>Accurate costing, margins and payouts</span></div></li>
+          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Inpatient & OPD Operations</strong><span>Bed board, ward, OT and eMAR</span></div></li>
+          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Analytics Dashboard</strong><span>Occupancy, revenue and health score</span></div></li>
+          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Enterprise Support</strong><span>SLAs, SSO, white-label and audit trails</span></div></li>
+          <li class="ihms-cta-cell"><a href="#pricing" class="btn btn-primary">Talk to Enterprise Sales →</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -172,9 +207,15 @@
       <div class="grid grid-3 why-modules">
         <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
           <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M9 9V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9"/></svg></div>
-          <h4>CuraOS-IHMS <span>Enterprise</span></h4>
+          <h4>CuraOS-Hospital <span>Enterprise</span></h4>
           <p class="why-tag">Complete hospital ecosystem — 10 to 500+ beds</p>
           <p class="why-impact"><strong>Zero Revenue Leakage:</strong> Unifies OPD, IPD, surgical margins, charge capture, and ward management in one live system.</p>
+        </div>
+        <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
+          <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/></svg></div>
+          <h4>CuraOS-Clinic</h4>
+          <p class="why-tag">Clinic Pack</p>
+          <p class="why-impact"><strong>Small-Team Efficiency:</strong> Pre-seated 3-5 Doctors + 1 Pharmacy + 1 WaitList bundle for polyclinics.</p>
         </div>
         <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
           <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/></svg></div>
@@ -185,7 +226,7 @@
         <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
           <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></div>
           <h4>CuraOS-Doctor</h4>
-          <p class="why-tag">Clinical OS</p>
+          <p class="why-tag">Solo Practitioner Doctor</p>
           <p class="why-impact"><strong>Double Daily Consultations:</strong> Chart in seconds and dispatch e-Rx directly to nearby pharmacies via Unique ID.</p>
         </div>
         <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
@@ -200,43 +241,11 @@
           <p class="why-tag">Queue OS</p>
           <p class="why-impact"><strong>Eliminate Waiting Room Friction:</strong> Cut perceived wait times by 60% with live TV boards and automated updates.</p>
         </div>
-        <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
-          <div class="why-advantage-icon">⚡</div>
-          <h4>The CuraOS Advantage</h4>
-          <p class="why-tag">Why it wins</p>
-          <ul class="why-advantage-list">
-            <li>Instant e-Rx Network</li>
-            <li>Chain & Multi-Location Governance</li>
-            <li>Offline-Resilient Native PWA</li>
-            <li>Automated Regional Pricing</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Flagship Enterprise -->
-  <section id="ihms" class="section bg-brand-pastel" style="padding-bottom:24px">
-    <div class="container">
-      <div class="ihms-card">
-        <div class="ihms-badge">Flagship — CuraOS-IHMS</div>
-        <h2>Integrated Hospital Management System</h2>
-        <p class="ihms-sub">One platform for every department — run a 50-bed clinic or a 500-bed medical city on one OS.</p>
-        <div class="ihms-price" id="price-cura-ihms" data-module="cura-ihms">$5,000/mo</div>
-        <div class="ihms-note" id="ihmsCountryNote">US pricing · Auto-detected region · Switch currency above</div>
-        <ul class="ihms-grid">
-          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Multi-Department Sync</strong><span>Pharmacy, labs, nursing, OT in one ledger</span></div></li>
-          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Centralized Billing & EHR</strong><span>Accurate costing, margins and payouts</span></div></li>
-          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Inpatient & OPD Operations</strong><span>Bed board, ward, OT and eMAR</span></div></li>
-          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Analytics Dashboard</strong><span>Occupancy, revenue and health score</span></div></li>
-          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Enterprise Support</strong><span>SLAs, SSO, white-label and audit trails</span></div></li>
-          <li class="ihms-cta-cell"><a href="#pricing" class="btn btn-primary">Talk to Enterprise Sales →</a></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modules -->
+  <!-- Modules Grid -->
   <section id="modules" class="section">
     <div class="container">
       <div class="section-head">
@@ -244,6 +253,26 @@
         <p>Each module is a standalone product — bring your pharmacy, solo clinic, lab, or queue system online in a day, then light up the enterprise suite when ready.</p>
       </div>
       <div class="grid grid-2">
+        <a href="#" class="card shadow-floating-card">
+          <div class="card-top">
+            <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M9 9V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9"/></svg></span>
+            <span class="price" id="price-cura-hospital" data-module="cura-ihms">$5000/mo</span>
+          </div>
+          <h3>CuraOS-Hospital (Enterprise)</h3>
+          <p class="tag">ENTERPRISE SUITE</p>
+          <p class="desc">Multi-Department Sync, Centralized Billing & EHR, Inpatient & OPD Operations, Analytics Dashboard, Enterprise Support.</p>
+          <span class="card-cta">Explore Hospital Suite →</span>
+        </a>
+        <a href="#" class="card shadow-floating-card">
+          <div class="card-top">
+            <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></span>
+            <span class="price" id="price-cura-clinic" data-module="cura-clinic">$149/mo</span>
+          </div>
+          <h3>CuraOS-Clinic</h3>
+          <p class="tag">CLINIC BUNDLE</p>
+          <p class="desc">Small-team pack — 3–5 Doctors + 1 Pharmacy + 1 WaitList, pre-seated. Add Labs/Nursing as you grow.</p>
+          <span class="card-cta">Explore Clinic Bundle →</span>
+        </a>
         <a href="#" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></span>
@@ -260,7 +289,7 @@
             <span class="price" id="price-cura-doctor" data-module="cura-doctor">$49/mo</span>
           </div>
           <h3>CuraOS-Doctor</h3>
-          <p class="tag">SOLO PRACTITIONER OS</p>
+          <p class="tag">SOLO PRACTITIONER DOCTOR</p>
           <p class="desc">Rapid charting, ambient scribe, eRx, OPD queue, telehealth — today's revenue, OPD, telehealth + active EMRs.</p>
           <span class="card-cta">Open Doctor Admin →</span>
         </a>
@@ -288,7 +317,7 @@
     </div>
   </section>
 
-  <!-- Platform — value-first copy (no internal jargon) -->
+  <!-- Platform -->
   <section id="platform" class="section bg-brand-pastel">
     <div class="container">
       <div class="section-head">
@@ -304,7 +333,7 @@
         <div class="feature-card shadow-floating-card">
           <div class="feature-icon">🧾</div>
           <h3>Live Finance Tracking</h3>
-          <p>Pharmacy stock moves, dispenses, supplier POs, invoices and payouts are tracked as auditable single-entry financial records. Double-entry ledger on the roadmap (ADR-002).</p>
+          <p>Pharmacy stock moves, dispenses, supplier POs, invoices and payouts are tracked as auditable single-entry financial records.</p>
         </div>
         <div class="feature-card shadow-floating-card">
           <div class="feature-icon">🔒</div>
@@ -326,7 +355,7 @@
     <div class="container">
       <div class="section-head">
         <h2>Transparent pricing. No per-seat tax.</h2>
-        <p>Start free with the static marketing site, pay only when you go live on `curaos.health`. Mix and match modules as you grow.</p>
+        <p>Start free with evaluation, pay only when you go live on `curaos.health`. Mix and match modules as you grow.</p>
       </div>
       <div class="grid grid-3">
         <div class="pricing-card shadow-floating-card">
@@ -353,12 +382,12 @@
           <a href="#" class="btn btn-primary wide">Choose module</a>
         </div>
         <div class="pricing-card shadow-floating-card">
-          <h3>Enterprise</h3>
-          <div class="price-row"><span class="amount">$199</span><span class="period">/ mo</span></div>
-          <p class="pricing-desc">Full OS — Enterprise Overview + all four modules + tenant entailment.</p>
+          <h3>CuraOS-Hospital (Enterprise)</h3>
+          <div class="price-row"><span class="amount">$5,000</span><span class="period">/ mo</span></div>
+          <p class="pricing-desc">Full OS — Enterprise Overview + all modules + unlimited tenants.</p>
           <ul>
-            <li>✓ Workspace switcher pill</li>
-            <li>✓ MRR/ARR/churn dashboards</li>
+            <li>✓ Multi-Department Sync</li>
+            <li>✓ Centralized Billing & EHR</li>
             <li>✓ Priority support + SLAs</li>
           </ul>
           <a href="#" class="btn btn-ghost wide">Contact sales</a>
@@ -398,74 +427,12 @@
     </div>
   </section>
 
-  <section id="faq-onprem" class="section bg-brand-pastel">
-    <div class="container">
-      <div class="section-head">
-        <h2>On-Premise, Answered</h2>
-        <p>Data localization without re-platforming. Full IT handoff: <code>docs/ON_PREMISE_STORAGE_GUIDE.md</code>.</p>
-      </div>
-      <div class="feature-card shadow-floating-card" style="max-width:860px;margin:0 auto;text-align:left">
-        <h3>Is our system ready to provide all the things above for local installation?</h3>
-        <p><strong>Yes — CuraOS is 100% ready to support local on-premise server setups today.</strong> Because the platform uses a vendor-agnostic, standardized S3 adapter (django-storages + boto3), pointing the system to a client's local server requires zero code modifications.</p>
-        <p><strong>Universal S3 compatibility:</strong> CuraOS talks to any S3-compatible API. Pointing the media driver at a LAN IP (e.g. <code>http://192.168.1.100:9000</code> running MinIO) works identically to AWS or Backblaze B2.</p>
-        <p><strong>Custom endpoints in the Admin UI:</strong> the Platform Admin panel already has fields for Endpoint URL, Access Key, Secret Key, and Bucket Name.</p>
-        <p><strong>Live connection ping:</strong> Test &amp; Verify probes the LAN endpoint before onboarding — the badge flips to Connected only on success.</p>
-        <p><strong>Proven pattern:</strong> the same local-server engine runs the BD dual-storage deployment (hospital LAN + mandatory B2 mirror).</p>
-        <p><strong>Encryption &amp; portability:</strong> local uploads stay encrypted at rest (SSE-S3); moving local ⇄ cloud later uses the 4-stage zero-loss migration wizard.</p>
-        <p><strong>Onboarding:</strong> client installs Ubuntu 24.04 + the 1-click MinIO template → CuraOS staff paste the endpoint/keys into the Storage panel → Test &amp; Verify → DICOM, attachments, and vault documents route to local NVMe.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="onprem-guide" class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2>On-Premise Local Storage Integration Guide</h2>
-        <p>CuraOS connects directly to client-owned hardware with an S3-compatible containerized MinIO engine on the hospital LAN. Full handoff doc: <code>docs/ON_PREMISE_STORAGE_GUIDE.md</code>.</p>
-      </div>
-      <div class="feature-card shadow-floating-card" style="max-width:860px;margin:0 auto;text-align:left">
-        <h3>Hardware &amp; Operating System Requirements</h3>
-        <table style="width:100%;font-size:13px;border-collapse:collapse">
-          <tr style="border-bottom:1px solid #e2e8f0"><th style="text-align:left;padding:6px">Component</th><th style="text-align:left;padding:6px">Minimum</th><th style="text-align:left;padding:6px">Enterprise Recommendation</th></tr>
-          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px">OS</td><td style="padding:6px" colspan="2">Ubuntu Server 24.04 LTS or Debian 12 (64-bit)</td></tr>
-          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px">CPU</td><td style="padding:6px">4-core x86_64</td><td style="padding:6px">8-core (Intel Xeon / Core i7 / AMD EPYC)</td></tr>
-          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px">RAM</td><td style="padding:6px">8 GB</td><td style="padding:6px">16 GB ECC</td></tr>
-          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px">Storage</td><td style="padding:6px">500 GB SSD</td><td style="padding:6px">1 TB Enterprise NVMe (RAID 1 recommended)</td></tr>
-          <tr><td style="padding:6px">Network</td><td style="padding:6px" colspan="2">Static LAN IP + 1 Gbps Ethernet</td></tr>
-        </table>
-        <h3 style="margin-top:18px">Step 1 — OS &amp; Network Setup</h3>
-        <p>Install Ubuntu 24.04 LTS Server. Assign a static LAN IP (e.g. <code>192.168.1.100</code>). Install Docker Engine + Docker Compose.</p>
-        <h3>Step 2 — Deploy the Storage Engine Container</h3>
-        <pre style="background:#0f172a;color:#e2e8f0;padding:12px;border-radius:10px;font-size:12px;overflow-x:auto">version: '3.8'
-services:
-  curaos-local-s3:
-    image: minio/minio:latest
-    container_name: curaos_local_storage
-    restart: always
-    command: server /data --console-address ":9001"
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    environment:
-      MINIO_ROOT_USER: "curaos_admin_access_key"
-      MINIO_ROOT_PASSWORD: "GENERATE_STRONG_SECRET_KEY"
-    volumes:
-      - /var/curaos/patient_data:/data</pre>
-        <h3 style="margin-top:18px">Step 3 — Connect to CuraOS</h3>
-        <p>Hand these to CuraOS Support (entered in the Platform storage console): Endpoint <code>http://192.168.1.100:9000</code> (or <code>https://storage.hospital.lan</code>) · Access Key <code>curaos_admin_access_key</code> · Secret Key <code>GENERATE_STRONG_SECRET_KEY</code> · Bucket <code>curaos-patient-data</code>. Click <strong>Test &amp; Verify</strong> — on Connected, DICOM, attachments, and vault documents write to local NVMe.</p>
-        <h3>Step 4 — Security &amp; Disaster Recovery</h3>
-        <p><strong>Encryption at rest:</strong> native AES-256 volumes. <strong>Firewall:</strong> 100% intranet, zero inbound public ports. <strong>Dual-sync (BD hybrid standard):</strong> real-time mirror to Backblaze B2 while the legal record stays in-facility.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-grid">
       <div>
         <img src="media/logo.png" alt="CuraOS" class="footer-logo">
-        <p>CuraOS — Intelligent Healthcare Operating System by Veriora Labs.<br>Dual-repo: <code>verioralabs/CuraOS</code> (source) → <code>verioralabs/Website-Hositng-CuraOS.Health</code> (Pages).</p>
-        <p class="muted">Workflow: <code>NEXT_STATIC_EXPORT=1 npm run build → out/ → GH_PAGES_DEPLOY_TOKEN</code></p>
+        <p>CuraOS — Intelligent Healthcare Operating System by Veriora Labs.</p>
       </div>
       <div>
         <h4>Product</h4>
@@ -477,19 +444,13 @@ services:
       <div>
         <h4>Developers</h4>
         <a href="https://github.com/verioralabs/CuraOS">Private CuraOS</a>
-        <a href="https://github.com/verioralabs/Website-Hositng-CuraOS.Health">Public Hosting</a>
         <a href="https://curaos.health">curaos.health</a>
-        <a href="docs/AI_REPOSITORY_CONTEXT.md">AI Context</a>
       </div>
       <div>
         <h4>Veriora Labs</h4>
         <a href="https://www.verioralabs.com" target="_blank" rel="noreferrer">verioralabs.com</a>
         <span class="muted">© 2026 Veriora Labs. All rights reserved.</span>
-        <span class="muted">Web-first · PWA · Seamless clinical workflow</span>
       </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>Built from <code>CuraOS_Website/</code> in private repo → pushed to public Pages. See <code>docs/AI_REPOSITORY_CONTEXT.md</code>.</span>
     </div>
   </footer>
 
@@ -507,6 +468,6 @@ services:
     </div>
   </div>
 
-  <script src="js/main.js?v=2.2"></script>
+  <script src="js/main.js?v=2.3"></script>
 </body>
 </html>
