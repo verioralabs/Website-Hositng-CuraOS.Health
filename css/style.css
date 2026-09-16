@@ -43,14 +43,12 @@ img{max-width:100%}
   display:flex;align-items:center;justify-content:space-between;
   height:64px;gap:16px;
 }
-/* Logo container — flex, vertically centered, no background box */
 a.brand-logo{
   display:flex;align-items:center;
   overflow:hidden;max-height:40px;
   background:transparent;border:0;padding:0;
   flex:0 0 auto;
 }
-/* Logo image — explicit dimensions, transparent sit in navbar */
 a.brand-logo img{
   height:32px;width:auto;object-fit:contain;display:block;
   background:transparent;border:0;box-shadow:none;
@@ -59,17 +57,12 @@ a.brand-logo img{
 .nav a{color:var(--text-secondary)}
 .nav a:hover{color:var(--brand-dark)}
 .topbar-actions{display:flex;align-items:center;gap:10px}
-.lang-picker{position:relative}
-.lang-picker-btn{min-width:70px;padding-left:10px;padding-right:10px}
-.lang-picker-btn span:first-child{font-size:16px;line-height:1}
-.lang-dropdown{
-  position:absolute;top:calc(100% + 8px);right:0;z-index:60;display:none;
-  min-width:190px;margin:0;padding:6px;list-style:none;background:white;
-  border:1px solid var(--border);border-radius:14px;box-shadow:0 16px 36px rgba(15,23,42,.14)
+.topbar-actions select{
+  min-height:36px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface);padding:4px 8px;font-size:13px;
+  color:var(--text-primary);cursor:pointer;
 }
-.lang-dropdown.open{display:grid;gap:2px}
-.lang-dropdown li{padding:9px 10px;border-radius:9px;color:var(--text-secondary);font-size:13px;cursor:pointer}
-.lang-dropdown li:hover,.lang-dropdown li.active{background:#f1f5f9;color:var(--brand-dark);font-weight:700}
+.topbar-actions select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(2,132,199,.15)}
 .hamburger{display:none;flex-direction:column;gap:5px;background:transparent;border:1px solid var(--border);border-radius:10px;padding:10px}
 .hamburger span{width:18px;height:2px;background:var(--brand-dark);display:block;border-radius:2px}
 .mobile-nav{display:none;flex-direction:column;gap:12px;padding:14px 24px;border-top:1px solid var(--border);background:white}
@@ -87,8 +80,8 @@ a.brand-logo img{
 .btn-primary:hover{background:black}
 .btn-dark{background:#0f172a;color:white}
 .btn-dark:hover{background:black}
-.btn-install{background:linear-gradient(135deg,#0284c7,#6366f1);color:white;border-color:transparent;box-shadow:0 6px 16px rgba(37,99,235,.22)}
-.btn-install:hover{background:linear-gradient(135deg,#0369a1,#4f46e5);box-shadow:0 8px 20px rgba(37,99,235,.3);transform:translateY(-1px)}
+.btn-install{background:#059669;color:white;border-color:transparent}
+.btn-install:hover{background:#047857}
 .btn-ghost{background:white;border-color:#e2e8f0;color:var(--brand-dark)}
 .btn-ghost:hover{background:#f8fafc}
 .wide{width:100%}
@@ -174,7 +167,7 @@ a.brand-logo img{
   display:block;background:white;border:1px solid #e2e8f0;
   border-radius:16px;padding:20px;transition:transform .15s, box-shadow .15s;
 }
-.card:hover{transform:translateY(-2px)}
+.card:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.06)}
 .card-top{display:flex;align-items:center;justify-content:space-between}
 .icon-wrap{
   width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
@@ -266,8 +259,7 @@ a.brand-logo img{
 }
 .footer-grid{display:grid;grid-template-columns:1.6fr 0.6fr 0.7fr 0.9fr;gap:22px}
 @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr} .pwa-grid{grid-template-columns:1fr}}
-.footer-logo{height:32px;width:auto;display:block;background:#ffffff;border-radius:10px;padding:4px 10px;box-shadow:none}
-.footer-logo{background:transparent;padding:0;border-radius:0}
+.footer-logo{height:32px;width:auto;display:block;background:transparent;padding:0;border-radius:0}
 .footer h4{margin:0 0 10px;color:white;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
 .footer a{display:block;color:#94a3b8;font-size:13px;margin:7px 0}
 .footer a:hover{color:white}
@@ -364,6 +356,8 @@ a.brand-logo img{
 .why-tag{margin:6px 0 0;font-size:11px;letter-spacing:.1em;font-weight:800;color:#94a3b8;text-transform:uppercase}
 .why-impact{margin:8px 0 0;color:#475569;font-size:13px;line-height:1.6}
 .why-impact strong{color:var(--brand-dark)}
-.why-advantage-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#0f172a;color:white;font-size:18px}
-.why-advantage-list{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px}
-.why-advantage-list li{font-size:13px;color:#334155;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:8px 10px}
+.clinic-popular{
+  display:inline-block;margin-left:6px;
+  background:#059669;color:white;
+  padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0;
+}

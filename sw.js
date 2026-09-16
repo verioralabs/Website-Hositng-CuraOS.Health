@@ -1,5 +1,5 @@
-const CACHE = "curaos-site-v8";
-const ASSETS = ["./", "./index.html", "./css/style.css?v=2.3", "./js/main.js?v=2.3", "./media/logo.png", "./curaos-mark.svg", "./favicon.ico", "./favicon.png", "./manifest.json"];
+const CACHE = "curaos-site-v9";
+const ASSETS = ["./", "./index.html", "./css/style.css?v=2.4", "./js/main.js?v=2.4", "./media/logo.png", "./favicon.ico", "./favicon-64.png", "./favicon-32.png", "./apple-touch-icon.png", "./manifest.json"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
   self.skipWaiting();
@@ -12,7 +12,6 @@ self.addEventListener("activate", e => {
 });
 self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
-  // Network-first for html/root to prevent stale caching
   if (e.request.mode === "navigate" || e.request.headers.get("accept")?.includes("text/html")) {
     e.respondWith(
       fetch(e.request).then(res => {

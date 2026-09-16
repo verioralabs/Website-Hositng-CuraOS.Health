@@ -53,7 +53,6 @@
       openIOS();
       return;
     }
-    // Fallback: direct to web app portal where manifest service worker runs
     window.location.href = "https://app.curaos.health/?install=true";
   }
 
@@ -78,7 +77,7 @@
     });
   }
 
-  // ---- Dynamic regional pricing (Platform Admin → Public API → GeoIP) ----
+  // ---- Dynamic regional pricing (Platform Admin -> Public API -> GeoIP) ----
   const API_BASE = (window.__CURAOS_API__ || "https://api.curaos.health") + "/api/v1/public/pricing/";
   const currencySelect = document.getElementById('currencySelect');
   const FALLBACK_PRICES = {
@@ -164,47 +163,17 @@
     sw: { getStarted: "Anza Sasa", heroTitle: "Mfumo mmoja wa uendeshaji<br>kwa hospitali nzima.", heroDesc: "CuraOS — Mfumo wa Afya wa Kina kutoka Veriora Labs.", exploreModules: "Tazama Moduli →", seePricing: "Tazama Bei", hospitalTitle: "Mfumo wa Hospitali wa Enterprise", hospitalSub: "Jukwaa moja kwa idara zote." }
   };
 
-  const langPicker = document.getElementById('langPicker');
-  const langPickerBtn = document.getElementById('langPickerBtn');
-  const langDropdown = document.getElementById('langDropdown');
-  const langFlag = document.getElementById('langFlag');
-  const langCode = document.getElementById('langCode');
-  if(langPicker && langPickerBtn && langDropdown){
-    const setLanguage = (option)=>{
-      const lang = option.dataset.lang;
+  const languageSelect = document.getElementById('languageSelect');
+  if(languageSelect){
+    languageSelect.addEventListener('change', (e)=>{
+      const lang = e.target.value;
       const dict = I18N_DICT[lang] || I18N_DICT.en;
       Object.keys(dict).forEach(key=>{
         const el = document.getElementById('i18n-' + key);
         if(el) el.innerHTML = dict[key];
       });
-      if(langFlag) langFlag.textContent = option.dataset.flag || '';
-      if(langCode) langCode.textContent = option.dataset.code || lang.toUpperCase();
-      langDropdown.querySelectorAll('[role="option"]').forEach(item=>{
-        const active = item === option;
-        item.classList.toggle('active', active);
-        item.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
       document.documentElement.lang = lang;
       document.documentElement.dir = (lang==='ar' || lang==='ur') ? 'rtl' : 'ltr';
-      langPickerBtn.setAttribute('aria-expanded', 'false');
-      langDropdown.classList.remove('open');
-    };
-    langPickerBtn.addEventListener('click', ()=>{
-      const open = langDropdown.classList.toggle('open');
-      langPickerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    langDropdown.querySelectorAll('[role="option"]').forEach(option=>{
-      option.setAttribute('tabindex', '0');
-      option.addEventListener('click', ()=>setLanguage(option));
-      option.addEventListener('keydown', (event)=>{
-        if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); setLanguage(option); }
-      });
-    });
-    document.addEventListener('click', (event)=>{
-      if(!langPicker.contains(event.target)){
-        langDropdown.classList.remove('open');
-        langPickerBtn.setAttribute('aria-expanded', 'false');
-      }
     });
   }
 })();

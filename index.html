@@ -6,22 +6,22 @@
   <title>CuraOS — Hospital Operating System by Veriora Labs</title>
   <meta name="description" content="CuraOS — Intelligent Healthcare Operating System by Veriora Labs. The hospital OS that chains clinical actions to live finance tracking — charges, invoices, surgical margins, doctor payouts, and departmental P&L.">
   <meta name="theme-color" content="#0f172a">
-  <link rel="icon" type="image/svg+xml" href="curaos-mark.svg">
   <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=2.3">
+  <link rel="stylesheet" href="css/style.css?v=2.4">
 </head>
 <body>
   <!-- Topbar -->
   <header class="topbar">
     <div class="container topbar-inner">
-      <a href="/" class="brand-logo flex items-center">
-        <img src="media/logo.png" alt="CuraOS Health" class="h-10 w-auto object-contain" />
+      <a href="/" class="brand-logo">
+        <img src="media/logo.png" alt="CuraOS" />
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="#modules">Modules</a>
@@ -31,29 +31,22 @@
         <a href="https://github.com/verioralabs/CuraOS" target="_blank" rel="noreferrer">Docs</a>
       </nav>
       <div class="topbar-actions">
-        <!-- Custom language picker — shows flag in closed state -->
-        <div class="lang-picker" id="langPicker">
-          <button type="button" id="langPickerBtn" class="btn btn-ghost btn-sm lang-picker-btn" aria-haspopup="listbox" aria-expanded="false">
-            <span id="langFlag">🇺🇸</span>
-            <span id="langCode">EN</span>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <ul class="lang-dropdown" id="langDropdown" role="listbox" aria-label="Language">
-            <li role="option" aria-selected="true" data-lang="en" data-flag="🇺🇸" data-code="EN" class="active">🇺🇸 EN — English</li>
-            <li role="option" data-lang="ja" data-flag="🇯🇵" data-code="JA">🇯🇵 JA — 日本語</li>
-            <li role="option" data-lang="ms" data-flag="🇲🇾" data-code="MS">🇲🇾 MS — Bahasa Melayu</li>
-            <li role="option" data-lang="id" data-flag="🇮🇩" data-code="ID">🇮🇩 ID — Bahasa Indonesia</li>
-            <li role="option" data-lang="ar" data-flag="🇸🇦" data-code="AR">🇸🇦 AR — العربية</li>
-            <li role="option" data-lang="es" data-flag="🇪🇸" data-code="ES">🇪🇸 ES — Español</li>
-            <li role="option" data-lang="de" data-flag="🇩🇪" data-code="DE">🇩🇪 DE — Deutsch</li>
-            <li role="option" data-lang="bn" data-flag="🇧🇩" data-code="BN">🇧🇩 BN — বাংলা</li>
-            <li role="option" data-lang="hi" data-flag="🇮🇳" data-code="HI">🇮🇳 HI — हिन्दी</li>
-            <li role="option" data-lang="ur" data-flag="🇵🇰" data-code="UR">🇵🇰 UR — اردو</li>
-            <li role="option" data-lang="sw" data-flag="🇰🇪" data-code="SW">🇰🇪 SW — Kiswahili</li>
-          </ul>
-        </div>
+        <label for="languageSelect" class="sr-only">Language</label>
+        <select id="languageSelect" title="Choose language">
+          <option value="en">🇺🇸 EN — English</option>
+          <option value="ja">🇯🇵 JA — 日本語</option>
+          <option value="ms">🇲🇾 MS — Bahasa Melayu</option>
+          <option value="id">🇮🇩 ID — Bahasa Indonesia</option>
+          <option value="ar">🇸🇦 AR — العربية</option>
+          <option value="es">🇪🇸 ES — Español</option>
+          <option value="de">🇩🇪 DE — Deutsch</option>
+          <option value="bn">🇧🇩 BN — বাংলা</option>
+          <option value="hi">🇮🇳 HI — हिन्दी</option>
+          <option value="ur">🇵🇰 UR — اردو</option>
+          <option value="sw">🇹🇿 SW — Kiswahili</option>
+        </select>
         <label for="currencySelect" class="sr-only">Currency</label>
-        <select id="currencySelect" class="form-select btn btn-ghost btn-sm" style="padding:6px 8px;background:white" title="Choose currency">
+        <select id="currencySelect" title="Choose currency">
           <option value="auto">🌐 Auto (GeoIP)</option>
           <optgroup label="Tier 1: Global Reserve &amp; Major Markets">
             <option value="US">🇺🇸 USD — United States ($)</option>
@@ -79,9 +72,8 @@
             <option value="BD">🇧🇩 BDT — Bangladesh (৳)</option>
           </optgroup>
         </select>
-        <!-- Install App — always visible, points to app.curaos.health PWA -->
         <a href="https://app.curaos.health/?install=true" id="pwaInstallBtn" class="btn btn-install btn-sm" target="_blank" rel="noreferrer">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
           Install App
         </a>
         <a href="#pricing" class="btn btn-primary" id="i18n-getStarted">Get Started</a>
@@ -114,10 +106,10 @@
         <div class="hero-cta">
           <a href="#modules" class="btn btn-primary btn-lg" id="i18n-exploreModules">Explore Modules →</a>
           <a href="#pricing" class="btn btn-ghost btn-lg" id="i18n-seePricing">See pricing</a>
-          <button id="heroInstallBtn" class="btn btn-dark btn-lg" style="display:none">Install App</button>
+          <button id="heroInstallBtn" class="btn btn-install btn-lg" style="display:none">Install App</button>
         </div>
         <div class="hero-meta">
-          <span><strong>136</strong> routes · 4 admin consoles</span>
+          <span><strong>490</strong> endpoints · 145 routes · 4 admin consoles</span>
           <span class="sep">·</span>
           <span>Secure · Always in sync</span>
         </div>
@@ -167,8 +159,8 @@
         <div class="ihms-note" id="ihmsCountryNote">US pricing · Auto-detected region · Switch currency above</div>
         <ul class="ihms-grid">
           <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Multi-Department Sync</strong><span>Pharmacy, labs, nursing, OT in one ledger</span></div></li>
-          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Centralized Billing & EHR</strong><span>Accurate costing, margins and payouts</span></div></li>
-          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Inpatient & OPD Operations</strong><span>Bed board, ward, OT and eMAR</span></div></li>
+          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Centralized Billing &amp; EHR</strong><span>Accurate costing, margins and payouts</span></div></li>
+          <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Inpatient &amp; OPD Operations</strong><span>Bed board, ward, OT and eMAR</span></div></li>
           <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Analytics Dashboard</strong><span>Occupancy, revenue and health score</span></div></li>
           <li><span class="ihms-check"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><div><strong>Enterprise Support</strong><span>SLAs, SSO, white-label and audit trails</span></div></li>
           <li class="ihms-cta-cell"><a href="#pricing" class="btn btn-primary">Talk to Enterprise Sales →</a></li>
@@ -181,30 +173,30 @@
   <section id="why-curaos" class="section bg-brand-pastel">
     <div class="container">
       <div class="section-head">
-        <h2 class="text-3xl font-bold tracking-tight text-[#0F172A]">Why Healthcare Leaders Choose CuraOS</h2>
+        <h2>Why Healthcare Leaders Choose CuraOS</h2>
         <p>Built to eliminate operational friction, secure revenue margins, and elevate patient care across every department.</p>
       </div>
       <div class="grid grid-4 why-grid">
-        <div class="feature-card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
+        <div class="feature-card">
           <div class="why-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/><path d="M6 1v22"/></svg></div>
           <h3>Revenue Security</h3>
           <p>Zero Revenue Leakage — every OPD, IPD and surgical charge is captured in live single-entry finance records.</p>
           <span class="why-metric">Zero Leakage</span>
         </div>
-        <div class="feature-card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
-          <div class="why-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+        <div class="feature-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></div>
           <h3>Instant e-Rx Routing</h3>
-          <p>Doctors dispatch prescriptions straight to designated pharmacy queues via unique facility IDs — no loss, no retyping.</p>
-          <span class="why-metric">Zero Prescription Loss</span>
+          <p>Dispatch prescriptions to designated pharmacy queues via unique facility IDs — no loss, no retyping.</p>
+          <span class="why-metric">Zero Loss</span>
         </div>
-        <div class="feature-card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
+        <div class="feature-card">
           <div class="why-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M3 9V7a2 2 0 0 1 2-2h2"/><path d="M15 9V7a2 2 0 0 1 2-2h2"/><path d="M12 11v6"/><path d="M8 15h8"/></svg></div>
           <h3>Multi-Branch Control</h3>
           <p>Manage 1 to 50+ locations from one dashboard — aggregated revenue, inventory and EMRs in real time.</p>
           <span class="why-metric">Single Dashboard</span>
         </div>
-        <div class="feature-card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
-          <div class="why-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12l2 2 4-4"/><path d="M12 16v-6"/></svg></div>
+        <div class="feature-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <h3>Offline Reliability</h3>
           <p>Installable PWA that keeps running during dropouts — queues sync automatically when back online.</p>
           <span class="why-metric">99.99% Uptime</span>
@@ -215,41 +207,41 @@
         <p>Pick what you need today, scale to the full OS tomorrow.</p>
       </div>
       <div class="grid grid-3 why-modules">
-        <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
-          <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M9 9V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9"/></svg></div>
+        <div class="card">
+          <div class="why-module-icon" style="background:#0f172a"><img src="assets/hospital-icon.svg" alt="" width="18" height="18" style="filter:brightness(0) invert(1)"></div>
           <h4>CuraOS-Hospital <span>Enterprise</span></h4>
           <p class="why-tag">Complete hospital ecosystem — 10 to 500+ beds</p>
           <p class="why-impact"><strong>Zero Revenue Leakage:</strong> Unifies OPD, IPD, surgical margins, charge capture, and ward management in one live system.</p>
         </div>
-        <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
-          <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/></svg></div>
-          <h4>CuraOS-Clinic</h4>
-          <p class="why-tag">Clinic Pack</p>
-          <p class="why-impact"><strong>Small-Team Efficiency:</strong> Pre-seated 3-5 Doctors + 1 Pharmacy + 1 WaitList bundle for polyclinics.</p>
+        <div class="card">
+          <div class="why-module-icon" style="background:#0f172a"><img src="assets/clinic-icon.svg" alt="" width="18" height="18" style="filter:brightness(0) invert(1)"></div>
+          <h4>CuraOS-Clinic <span class="clinic-popular">Popular</span></h4>
+          <p class="why-tag">Small-team bundle — 3–5 Doctors · 1 Pharmacy · 1 WaitList</p>
+          <p class="why-impact"><strong>Launch in a day:</strong> Pre-seated seats + all Clinic modules live on signup. Add Labs/Nursing as you grow.</p>
         </div>
-        <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
-          <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/></svg></div>
+        <div class="card">
+          <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></div>
           <h4>CuraOS-Rx</h4>
           <p class="why-tag">Pharmacy OS</p>
           <p class="why-impact"><strong>Prevent Inventory Loss:</strong> FEFO intelligence, expiry alerts, drawer audits, and real-time incoming e-Rx queues.</p>
         </div>
-        <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
+        <div class="card">
           <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></div>
           <h4>CuraOS-Doctor</h4>
           <p class="why-tag">Solo Practitioner Doctor</p>
           <p class="why-impact"><strong>Double Daily Consultations:</strong> Chart in seconds and dispatch e-Rx directly to nearby pharmacies via Unique ID.</p>
         </div>
-        <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
-          <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/></svg></div>
+        <div class="card">
+          <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg></div>
           <h4>CuraOS-Labs</h4>
           <p class="why-tag">Diagnostic OS</p>
           <p class="why-impact"><strong>Accelerate Turnaround Time:</strong> High-throughput LIMS queue — reduce report TAT by 40% with instant digital results.</p>
         </div>
-        <div class="card bg-white/80 backdrop-blur-md rounded-2xl shadow-floating-card border border-slate-200/60 p-6 hover:shadow-xl transition-all duration-300">
+        <div class="card">
           <div class="why-module-icon" style="background:#0f172a"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
           <h4>CuraOS-WaitList</h4>
           <p class="why-tag">Queue OS</p>
-          <p class="why-impact"><strong>Eliminate Waiting Room Friction:</strong> Cut perceived wait times by 60% with live TV boards and automated updates.</p>
+          <p class="why-impact"><strong>Eliminate Waiting Room Friction:</strong> QR self-check-in, priority triage (elderly/emergency fast-track), live TV board with spoken announcements.</p>
         </div>
       </div>
     </div>
@@ -263,19 +255,19 @@
         <p>Each module is a standalone product — bring your pharmacy, solo clinic, lab, or queue system online in a day, then light up the enterprise suite when ready.</p>
       </div>
       <div class="grid grid-2">
-        <a href="#" class="card shadow-floating-card">
+        <a href="https://app.curaos.health/pricing?plan=cura-ihms" class="card shadow-floating-card">
           <div class="card-top">
-            <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M9 9V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9"/></svg></span>
+            <span class="icon-wrap" style="background:#0f172a"><img src="assets/hospital-icon.svg" alt="" width="20" height="20" style="filter:brightness(0) invert(1)"></span>
             <span class="price" id="price-cura-hospital" data-module="cura-ihms">$5000/mo</span>
           </div>
           <h3>CuraOS-Hospital (Enterprise)</h3>
           <p class="tag">ENTERPRISE SUITE</p>
-          <p class="desc">Multi-Department Sync, Centralized Billing & EHR, Inpatient & OPD Operations, Analytics Dashboard, Enterprise Support.</p>
+          <p class="desc">Multi-Department Sync, Centralized Billing &amp; EHR, Inpatient &amp; OPD Operations, Analytics Dashboard, Enterprise Support.</p>
           <span class="card-cta">Explore Hospital Suite →</span>
         </a>
-        <a href="#" class="card shadow-floating-card">
+        <a href="https://app.curaos.health/pricing?plan=cura-clinic" class="card shadow-floating-card">
           <div class="card-top">
-            <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></span>
+            <span class="icon-wrap" style="background:#0f172a"><img src="assets/clinic-icon.svg" alt="" width="20" height="20" style="filter:brightness(0) invert(1)"></span>
             <span class="price" id="price-cura-clinic" data-module="cura-clinic">$149/mo</span>
           </div>
           <h3>CuraOS-Clinic</h3>
@@ -283,44 +275,44 @@
           <p class="desc">Small-team pack — 3–5 Doctors + 1 Pharmacy + 1 WaitList, pre-seated. Add Labs/Nursing as you grow.</p>
           <span class="card-cta">Explore Clinic Bundle →</span>
         </a>
-        <a href="#" class="card shadow-floating-card">
+        <a href="https://app.curaos.health/rx/admin" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></span>
             <span class="price" id="price-cura-rx" data-module="cura-rx">$49/mo</span>
           </div>
           <h3>CuraOS-Rx</h3>
           <p class="tag">PHARMACY OS</p>
-          <p class="desc">FEFO inventory, dispensing queue, POS counters, supplier POs — gross sales, net margin, drawer + low-stock & expiry alerts.</p>
+          <p class="desc">FEFO inventory, dispensing queue, POS counters, supplier POs.</p>
           <span class="card-cta">Open Rx Admin →</span>
         </a>
-        <a href="#" class="card shadow-floating-card">
+        <a href="https://app.curaos.health/solo/admin" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></span>
             <span class="price" id="price-cura-doctor" data-module="cura-doctor">$49/mo</span>
           </div>
           <h3>CuraOS-Doctor</h3>
           <p class="tag">SOLO PRACTITIONER DOCTOR</p>
-          <p class="desc">Rapid charting, ambient scribe, eRx, OPD queue, telehealth — today's revenue, OPD, telehealth + active EMRs.</p>
+          <p class="desc">Rapid charting, ambient scribe, eRx, OPD queue, telehealth.</p>
           <span class="card-cta">Open Doctor Admin →</span>
         </a>
-        <a href="#" class="card shadow-floating-card">
+        <a href="https://app.curaos.health/labs/admin" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg></span>
             <span class="price" id="price-cura-labs" data-module="cura-labs">$49/mo</span>
           </div>
           <h3>CuraOS-Labs</h3>
           <p class="tag">DIAGNOSTIC CENTER OS</p>
-          <p class="desc">LIMS queue, analyzer QC, TAT tracking, report governance — throughput, avg TAT, analyzer + critical alerts.</p>
+          <p class="desc">LIMS queue, analyzer QC, TAT tracking, report governance.</p>
           <span class="card-cta">Open Labs Admin →</span>
         </a>
-        <a href="#" class="card shadow-floating-card">
+        <a href="https://app.curaos.health/waitlist/admin" class="card shadow-floating-card">
           <div class="card-top">
             <span class="icon-wrap" style="background:#0f172a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
             <span class="price" id="price-cura-waitlist" data-module="cura-waitlist">$49/mo</span>
           </div>
           <h3>CuraOS-WaitList</h3>
           <p class="tag">QUEUE MANAGEMENT OS</p>
-          <p class="desc">Token engine, TV display boards, room mapping, SMS triggers — avg wait, serving token, live preview.</p>
+          <p class="desc">QR self-check-in, priority triage, live TV board with spoken announcements.</p>
           <span class="card-cta">Open WaitList Admin →</span>
         </a>
       </div>
@@ -335,20 +327,20 @@
         <p>Connect your pharmacy, consultations, diagnostics, and patient queues into a seamless, high-speed clinical workflow — from OPD to billing, every team works in one shared record.</p>
       </div>
       <div class="grid grid-3">
-        <div class="feature-card shadow-floating-card">
+        <div class="feature-card">
           <div class="feature-icon">⌨️</div>
           <h3>1-Click Clinical</h3>
           <p>Keyboard-first doctor workspace with hotkey prescribing, ambient scribe SSE, and junior-doctor guardrails. One tap from OPD to eRx.</p>
         </div>
-        <div class="feature-card shadow-floating-card">
+        <div class="feature-card">
           <div class="feature-icon">🧾</div>
           <h3>Live Finance Tracking</h3>
           <p>Pharmacy stock moves, dispenses, supplier POs, invoices and payouts are tracked as auditable single-entry financial records.</p>
         </div>
-        <div class="feature-card shadow-floating-card">
+        <div class="feature-card">
           <div class="feature-icon">🔒</div>
           <h3>Multi-Tenant Isolation</h3>
-          <p>Postgres schemas per hospital, role-scoped APIs (`ROLE_SUPER_ADMIN` / `ROLE_MODULE_ADMIN`), soft-deletes + tombstone erasure, WORM backup chain.</p>
+          <p>Postgres schemas per hospital, role-scoped APIs (ROLE_SUPER_ADMIN / ROLE_MODULE_ADMIN), soft-deletes + tombstone erasure, WORM backup chain.</p>
         </div>
       </div>
       <div class="platform-strip shadow-floating-card">
@@ -365,10 +357,10 @@
     <div class="container">
       <div class="section-head">
         <h2>Transparent pricing. No per-seat tax.</h2>
-        <p>Start free with evaluation, pay only when you go live on `curaos.health`. Mix and match modules as you grow.</p>
+        <p>Start free with evaluation, pay only when you go live. Mix and match modules as you grow.</p>
       </div>
       <div class="grid grid-3">
-        <div class="pricing-card shadow-floating-card">
+        <div class="pricing-card">
           <h3>Starter</h3>
           <div class="price-row"><span class="amount">$0</span><span class="period">/ forever</span></div>
           <p class="pricing-desc">Static site + PWA shell + download hub. Perfect for evaluation.</p>
@@ -379,7 +371,7 @@
           </ul>
           <a href="#" class="btn btn-ghost wide">Start free</a>
         </div>
-        <div class="pricing-card featured shadow-floating-card">
+        <div class="pricing-card featured">
           <div class="featured-badge">Most popular</div>
           <h3>Module</h3>
           <div class="price-row"><span class="amount">$49</span><span class="period">/ module / mo</span></div>
@@ -391,13 +383,13 @@
           </ul>
           <a href="#" class="btn btn-primary wide">Choose module</a>
         </div>
-        <div class="pricing-card shadow-floating-card">
+        <div class="pricing-card">
           <h3>CuraOS-Hospital (Enterprise)</h3>
           <div class="price-row"><span class="amount">$5,000</span><span class="period">/ mo</span></div>
           <p class="pricing-desc">Full OS — Enterprise Overview + all modules + unlimited tenants.</p>
           <ul>
             <li>✓ Multi-Department Sync</li>
-            <li>✓ Centralized Billing & EHR</li>
+            <li>✓ Centralized Billing &amp; EHR</li>
             <li>✓ Priority support + SLAs</li>
           </ul>
           <a href="#" class="btn btn-ghost wide">Contact sales</a>
@@ -411,14 +403,14 @@
     <div class="container pwa-grid">
       <div>
         <h2>Install CuraOS like a native app.</h2>
-        <p>No App Store. Install from <strong>app.curaos.health</strong> — the CuraOS PWA gives you push, offline queue, and a standalone shell on iOS, Android, and desktop.</p>
+        <p>No App Store. Install from <strong>app.curaos.health</strong> — our PWA gives you push, offline queue, and standalone shell on iOS, Android, and desktop.</p>
         <ul class="pwa-steps">
           <li><span class="step-n">1</span> Tap <strong>Install App</strong> in the header</li>
           <li><span class="step-n">2</span> iOS: Share icon → <strong>Add to Home Screen</strong></li>
           <li><span class="step-n">3</span> Android/Desktop: Accept the browser prompt</li>
         </ul>
         <div class="pwa-actions">
-          <button id="pwaInstallInline" class="btn btn-dark">Install App</button>
+          <button id="pwaInstallInline" class="btn btn-install">Install App</button>
           <span class="pwa-hint" id="pwaHint">Works offline after install</span>
         </div>
       </div>
@@ -472,12 +464,12 @@
       <p>Add CuraOS to your Home Screen for a native-like app experience from <strong>app.curaos.health</strong> — no App Store needed.</p>
       <ol>
         <li><span class="modal-icon">⎙</span><div><strong>1. Tap the Share icon</strong><br><span>In Safari's bottom bar, tap the Share icon.</span></div></li>
-        <li><span class="modal-icon">⊞</span><div><strong>2. Tap “Add to Home Screen”</strong><br><span>Scroll and tap Add to Home Screen, then confirm.</span></div></li>
+        <li><span class="modal-icon">⊞</span><div><strong>2. Tap "Add to Home Screen"</strong><br><span>Scroll and tap Add to Home Screen, then confirm.</span></div></li>
       </ol>
       <button class="btn btn-dark wide" id="iosGotIt">Got it</button>
     </div>
   </div>
 
-  <script src="js/main.js?v=2.3"></script>
+  <script src="js/main.js?v=2.4"></script>
 </body>
 </html>
