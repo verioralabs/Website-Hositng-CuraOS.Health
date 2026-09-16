@@ -59,6 +59,17 @@ a.brand-logo img{
 .nav a{color:var(--text-secondary)}
 .nav a:hover{color:var(--brand-dark)}
 .topbar-actions{display:flex;align-items:center;gap:10px}
+.lang-picker{position:relative}
+.lang-picker-btn{min-width:70px;padding-left:10px;padding-right:10px}
+.lang-picker-btn span:first-child{font-size:16px;line-height:1}
+.lang-dropdown{
+  position:absolute;top:calc(100% + 8px);right:0;z-index:60;display:none;
+  min-width:190px;margin:0;padding:6px;list-style:none;background:white;
+  border:1px solid var(--border);border-radius:14px;box-shadow:0 16px 36px rgba(15,23,42,.14)
+}
+.lang-dropdown.open{display:grid;gap:2px}
+.lang-dropdown li{padding:9px 10px;border-radius:9px;color:var(--text-secondary);font-size:13px;cursor:pointer}
+.lang-dropdown li:hover,.lang-dropdown li.active{background:#f1f5f9;color:var(--brand-dark);font-weight:700}
 .hamburger{display:none;flex-direction:column;gap:5px;background:transparent;border:1px solid var(--border);border-radius:10px;padding:10px}
 .hamburger span{width:18px;height:2px;background:var(--brand-dark);display:block;border-radius:2px}
 .mobile-nav{display:none;flex-direction:column;gap:12px;padding:14px 24px;border-top:1px solid var(--border);background:white}
@@ -76,6 +87,8 @@ a.brand-logo img{
 .btn-primary:hover{background:black}
 .btn-dark{background:#0f172a;color:white}
 .btn-dark:hover{background:black}
+.btn-install{background:linear-gradient(135deg,#0284c7,#6366f1);color:white;border-color:transparent;box-shadow:0 6px 16px rgba(37,99,235,.22)}
+.btn-install:hover{background:linear-gradient(135deg,#0369a1,#4f46e5);box-shadow:0 8px 20px rgba(37,99,235,.3);transform:translateY(-1px)}
 .btn-ghost{background:white;border-color:#e2e8f0;color:var(--brand-dark)}
 .btn-ghost:hover{background:#f8fafc}
 .wide{width:100%}
@@ -254,6 +267,7 @@ a.brand-logo img{
 .footer-grid{display:grid;grid-template-columns:1.6fr 0.6fr 0.7fr 0.9fr;gap:22px}
 @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr} .pwa-grid{grid-template-columns:1fr}}
 .footer-logo{height:32px;width:auto;display:block;background:#ffffff;border-radius:10px;padding:4px 10px;box-shadow:none}
+.footer-logo{background:transparent;padding:0;border-radius:0}
 .footer h4{margin:0 0 10px;color:white;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
 .footer a{display:block;color:#94a3b8;font-size:13px;margin:7px 0}
 .footer a:hover{color:white}

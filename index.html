@@ -6,10 +6,10 @@
   <title>CuraOS — Hospital Operating System by Veriora Labs</title>
   <meta name="description" content="CuraOS — Intelligent Healthcare Operating System by Veriora Labs. The hospital OS that chains clinical actions to live finance tracking — charges, invoices, surgical margins, doctor payouts, and departmental P&L.">
   <meta name="theme-color" content="#0f172a">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="icon" href="media/logo.png" type="image/png">
-  <link rel="shortcut icon" href="media/logo.png" type="image/png">
-  <link rel="apple-touch-icon" href="media/logo.png">
+  <link rel="icon" type="image/svg+xml" href="curaos-mark.svg">
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,24 +31,31 @@
         <a href="https://github.com/verioralabs/CuraOS" target="_blank" rel="noreferrer">Docs</a>
       </nav>
       <div class="topbar-actions">
-        <label for="languageSelect" class="sr-only">Language</label>
-        <select id="languageSelect" class="form-select btn btn-ghost btn-sm" style="padding:6px 8px;background:white" title="Choose language">
-          <option value="en">🇺🇸 EN — English</option>
-          <option value="ja">🇯🇵 JA — 日本語</option>
-          <option value="ms">🇲🇾 MS — Bahasa Melayu</option>
-          <option value="id">🇮🇩 ID — Bahasa Indonesia</option>
-          <option value="ar">🇸🇦 AR — العربية</option>
-          <option value="es">🇪🇸 ES — Español</option>
-          <option value="de">🇩🇪 DE — Deutsch</option>
-          <option value="bn">🇧🇩 BN — বাংলা</option>
-          <option value="hi">🇮🇳 HI — हिन्दी</option>
-          <option value="ur">🇵🇰 UR — اردو</option>
-          <option value="sw">🇰🇪 SW — Kiswahili</option>
-        </select>
+        <!-- Custom language picker — shows flag in closed state -->
+        <div class="lang-picker" id="langPicker">
+          <button type="button" id="langPickerBtn" class="btn btn-ghost btn-sm lang-picker-btn" aria-haspopup="listbox" aria-expanded="false">
+            <span id="langFlag">🇺🇸</span>
+            <span id="langCode">EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="lang-dropdown" id="langDropdown" role="listbox" aria-label="Language">
+            <li role="option" aria-selected="true" data-lang="en" data-flag="🇺🇸" data-code="EN" class="active">🇺🇸 EN — English</li>
+            <li role="option" data-lang="ja" data-flag="🇯🇵" data-code="JA">🇯🇵 JA — 日本語</li>
+            <li role="option" data-lang="ms" data-flag="🇲🇾" data-code="MS">🇲🇾 MS — Bahasa Melayu</li>
+            <li role="option" data-lang="id" data-flag="🇮🇩" data-code="ID">🇮🇩 ID — Bahasa Indonesia</li>
+            <li role="option" data-lang="ar" data-flag="🇸🇦" data-code="AR">🇸🇦 AR — العربية</li>
+            <li role="option" data-lang="es" data-flag="🇪🇸" data-code="ES">🇪🇸 ES — Español</li>
+            <li role="option" data-lang="de" data-flag="🇩🇪" data-code="DE">🇩🇪 DE — Deutsch</li>
+            <li role="option" data-lang="bn" data-flag="🇧🇩" data-code="BN">🇧🇩 BN — বাংলা</li>
+            <li role="option" data-lang="hi" data-flag="🇮🇳" data-code="HI">🇮🇳 HI — हिन्दी</li>
+            <li role="option" data-lang="ur" data-flag="🇵🇰" data-code="UR">🇵🇰 UR — اردو</li>
+            <li role="option" data-lang="sw" data-flag="🇰🇪" data-code="SW">🇰🇪 SW — Kiswahili</li>
+          </ul>
+        </div>
         <label for="currencySelect" class="sr-only">Currency</label>
         <select id="currencySelect" class="form-select btn btn-ghost btn-sm" style="padding:6px 8px;background:white" title="Choose currency">
           <option value="auto">🌐 Auto (GeoIP)</option>
-          <optgroup label="Tier 1: Global Reserve & Major Markets">
+          <optgroup label="Tier 1: Global Reserve &amp; Major Markets">
             <option value="US">🇺🇸 USD — United States ($)</option>
             <option value="EU">🇪🇺 EUR — Eurozone (€)</option>
             <option value="GB">🇬🇧 GBP — United Kingdom (£)</option>
@@ -58,13 +65,13 @@
             <option value="NZ">🇳🇿 NZD — New Zealand (NZ$)</option>
             <option value="SG">🇸🇬 SGD — Singapore (S$)</option>
           </optgroup>
-          <optgroup label="Tier 2: Middle East & Asia-Pacific">
+          <optgroup label="Tier 2: Middle East &amp; Asia-Pacific">
             <option value="AE">🇦🇪 AED — UAE Dirham (AED)</option>
             <option value="SA">🇸🇦 SAR — Saudi Riyal (SAR)</option>
             <option value="MY">🇲🇾 MYR — Malaysian Ringgit (RM)</option>
             <option value="TH">🇹🇭 THB — Thai Baht (฿)</option>
           </optgroup>
-          <optgroup label="Tier 3: Emerging & Regional Markets">
+          <optgroup label="Tier 3: Emerging &amp; Regional Markets">
             <option value="ZA">🇿🇦 ZAR — South Africa (R)</option>
             <option value="NG">🇳🇬 NGN — Nigeria (₦)</option>
             <option value="KE">🇰🇪 KES — Kenya (KSh)</option>
@@ -72,10 +79,11 @@
             <option value="BD">🇧🇩 BDT — Bangladesh (৳)</option>
           </optgroup>
         </select>
-        <button id="pwaInstallBtn" class="btn btn-dark btn-sm" style="display:none">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+        <!-- Install App — always visible, points to app.curaos.health PWA -->
+        <a href="https://app.curaos.health/?install=true" id="pwaInstallBtn" class="btn btn-install btn-sm" target="_blank" rel="noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
           Install App
-        </button>
+        </a>
         <a href="#pricing" class="btn btn-primary" id="i18n-getStarted">Get Started</a>
         <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -403,7 +411,7 @@
     <div class="container pwa-grid">
       <div>
         <h2>Install CuraOS like a native app.</h2>
-        <p>No App Store. One tap on <strong>curaos.health</strong> — our PWA gives you push, offline queue, and standalone shell on iOS + Android + Desktop.</p>
+        <p>No App Store. Install from <strong>app.curaos.health</strong> — the CuraOS PWA gives you push, offline queue, and a standalone shell on iOS, Android, and desktop.</p>
         <ul class="pwa-steps">
           <li><span class="step-n">1</span> Tap <strong>Install App</strong> in the header</li>
           <li><span class="step-n">2</span> iOS: Share icon → <strong>Add to Home Screen</strong></li>
@@ -461,7 +469,7 @@
     <div class="modal-card shadow-floating-card">
       <button class="modal-close" id="iosClose" aria-label="Close">×</button>
       <h3 id="iosTitle">Install CuraOS on iOS</h3>
-      <p>Add CuraOS to your Home Screen for a native-like app experience from <strong>curaos.health</strong> — no App Store needed.</p>
+      <p>Add CuraOS to your Home Screen for a native-like app experience from <strong>app.curaos.health</strong> — no App Store needed.</p>
       <ol>
         <li><span class="modal-icon">⎙</span><div><strong>1. Tap the Share icon</strong><br><span>In Safari's bottom bar, tap the Share icon.</span></div></li>
         <li><span class="modal-icon">⊞</span><div><strong>2. Tap “Add to Home Screen”</strong><br><span>Scroll and tap Add to Home Screen, then confirm.</span></div></li>
