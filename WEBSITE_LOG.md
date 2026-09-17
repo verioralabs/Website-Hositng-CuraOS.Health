@@ -2,14 +2,29 @@
 
 > **Purpose:** one file to resume any website work instantly — where the code lives, where it deploys, what the design system is, what git was done, and the exact commands to verify/publish. Update this file on every `CuraOS_Website/` or logo/design change. Related: `docs/AI_REPOSITORY_CONTEXT.md`, `docs/PWA_APPS_OPERATIONS_LOG.md` §12.
 
-Last updated: **2026-09-17** · Visual/UX overhaul to design system **v3** (not yet committed/pushed — see below). Prior sync point: Private `verioralabs/CuraOS` HEAD **`e27eecf`** (logo E + PWA redirect) · Public `verioralabs/Website-Hositng-CuraOS.Health` **`87f9216`** · Branch `main` both. Logo `CuraOS_Logo-E.png` 928981 header `brand-logo flex` `h-10 w-auto object-contain`, marketing `Install App` → `https://app.curaos.health/?install=true`, manifest `start_url: https://app.curaos.health/`.
+Last updated: **2026-09-18** · Marketing visual/UX overhaul v3 was committed and published: private `verioralabs/CuraOS` `af265a4`, public Pages mirror `verioralabs/Website-Hositng-CuraOS.Health` `5492c6a`. Frontend application demo/mock mode + clinical shell polish is now in private `verioralabs/CuraOS` `50826a5` and live at `https://app.curaos.health/demo?demo=1`. Prior logo sync point: `CuraOS_Logo-E.png` 928981 header `brand-logo flex` `h-10 w-auto object-contain`, marketing `Install App` → `https://app.curaos.health/?install=true`, manifest `start_url: https://app.curaos.health/`.
 
 ## 2026-09-17 — Premium SaaS visual/UX overhaul (design system v3)
 
 Full in-place redesign of `index.html` / `css/style.css` / `js/main.js` (still plain
 HTML/CSS/JS, **no framework migration** — confirmed with owner: static stack stays,
-Tailwind/Next.js/TSX was not applicable to this repo). No git commit made yet (per
-standing instructions, only commit when explicitly asked).
+Tailwind/Next.js/TSX was not applicable to this repo). Committed as `af265a4` and
+published to the public Pages mirror as `5492c6a`; production verification returned
+HTTP 200 for `https://curaos.health/` with the new v3 marker.
+
+## 2026-09-18 — Frontend application demo/mock preview live
+
+The companion Next.js application now has client-side Mock Mode and high-end
+clinical shell polish in the private source-of-truth repo. The `/demo` hub links
+to the Doctor, Pharmacy, Nursing, eMAR, Executive, and Patient PWA previews.
+Use `?demo=1` for a route-local preview, the `/demo` toggle for a sticky browser
+preview, or `NEXT_PUBLIC_DEMO_MODE=true` for a build-wide preview. The mock layer
+does not alter API contracts, PowerSync schema, tenant isolation, or offline WAL;
+write actions are simulated in memory.
+
+Production publish: commit `50826a5` on `main`. Coolify deployment verified via
+`https://app.curaos.health/demo?demo=1` → HTTP 200, `X-Powered-By: Next.js`,
+`X-Nextjs-Cache: HIT`, and the `CLIENT-SIDE DEMO MODE` marker in the response.
 
 - **Hero**: fluid `clamp()` type scale, gradient `accent-text` span, ambient blurred
   glow blobs (`.hero-glow`), animated hero-meta count-up stats (490 endpoints / 145
@@ -333,3 +348,9 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 - **Parent brand:** `media/Logo_VerioraLabs.transparent.png` prepped (cropped + de-boxed, original kept); footer chip (`.parent-logo`, specificity-fixed `38f8270`) + linked.
 - **Flags:** emoji flags replaced with ISO codes in both selects (SW TZ→KE per directive, EN→US per owner); zero color emoji remain on marketing surfaces.
 - **Verify:** text grep clean; live apex fetch confirms v2 favicon + Clinic card + ISO codes. Private `2b51720`→`77f893d` range, public `269c702`→`c13fb90` range.
+
+## 22. 2026-09-18 — Blood Bank & LifeNet marketing launch
+
+- Added the `Blood Bank & LifeNet` enterprise module card with `media/CuraOS-BloodBank.png`, `$129/mo` starting price, live ABO/Rh inventory, anti-fraud donor verification, and inter-hospital transfer messaging.
+- Added the `Emergency Blood Finder` CTA to desktop navigation, mobile navigation, and the hero CTA group. All links target `https://app.curaos.health/blood-finder` and use a restrained emergency pulse indicator.
+- Added CuraOS-Blood to the product marquee and updated the suite count to seven purpose-built products. CSS keeps the card grid responsive and the existing `html,body{overflow-x:hidden;max-width:100%}` guard active for mobile.

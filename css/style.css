@@ -124,6 +124,10 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 }
 .nav a:hover{color:var(--brand-dark)}
 .nav a:hover::after{transform:scaleX(1)}
+.nav a.emergency-nav{color:#be123c;display:inline-flex;align-items:center;gap:6px}
+.nav a.emergency-nav::after{background:#e11d48}
+.emergency-pulse{width:8px;height:8px;border-radius:999px;background:#e11d48;display:inline-block;box-shadow:0 0 0 0 rgba(225,29,72,.45);animation:emergency-pulse 1.8s ease-out infinite;flex:0 0 8px}
+@keyframes emergency-pulse{0%{box-shadow:0 0 0 0 rgba(225,29,72,.45)}70%{box-shadow:0 0 0 7px rgba(225,29,72,0)}100%{box-shadow:0 0 0 0 rgba(225,29,72,0)}}
 .topbar-actions{display:flex;align-items:center;gap:10px}
 .topbar-actions select{
   min-height:36px;border-radius:10px;border:1px solid var(--border);
@@ -162,6 +166,8 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 .btn-install:hover{background:#047857;transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(5,150,105,.4)}
 .btn-ghost{background:rgba(255,255,255,0.6);border-color:#e2e8f0;color:var(--brand-dark);backdrop-filter:blur(6px)}
 .btn-ghost:hover{background:#fff;border-color:#cbd5e1;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn-emergency{background:#e11d48;color:#fff;box-shadow:0 8px 20px -10px rgba(225,29,72,.7)}
+.btn-emergency:hover{background:#be123c;transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(225,29,72,.65)}
 .btn-on-dark{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;backdrop-filter:blur(6px)}
 .btn-on-dark:hover{background:rgba(255,255,255,0.14);transform:translateY(-2px)}
 .wide{width:100%}
@@ -332,6 +338,11 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 .card .desc{margin:8px 0 0;color:#64748b;font-size:14px;line-height:1.55}
 .card-cta{margin-top:14px;display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:800;color:#0f172a;transition:gap var(--dur-fast) var(--ease-out)}
 .card:hover .card-cta{gap:8px}
+.emergency-card{border-color:#fecdd3;background:linear-gradient(145deg,#fff 0%,#fff8f8 100%)}
+.emergency-card:hover{border-color:#fda4af}
+.blood-price{background:#fff1f2;border-color:#fecdd3;color:#be123c}
+.card-feature-list{display:block;margin-top:12px;color:#be123c;font-size:12px;line-height:1.5}
+.card-feature-list strong{font-weight:800}
 
 /* Feature cards */
 .feature-card{
