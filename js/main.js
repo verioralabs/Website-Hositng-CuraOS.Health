@@ -109,7 +109,7 @@
   };
   function formatPrice(amount, currency){
     try{
-      return new Intl.NumberFormat(undefined, {style:"currency", currency}).format(Number(amount));
+      return new Intl.NumberFormat(undefined, {style:"currency", currency, minimumFractionDigits:0, maximumFractionDigits:2}).format(Number(amount));
     }catch{ return currency + " " + amount; }
   }
   async function loadPricing(country){
