@@ -2,7 +2,57 @@
 
 > **Purpose:** one file to resume any website work instantly — where the code lives, where it deploys, what the design system is, what git was done, and the exact commands to verify/publish. Update this file on every `CuraOS_Website/` or logo/design change. Related: `docs/AI_REPOSITORY_CONTEXT.md`, `docs/PWA_APPS_OPERATIONS_LOG.md` §12.
 
-Last updated: **2026-09-06** · Private `verioralabs/CuraOS` HEAD **`e27eecf`** (logo E + PWA redirect) · Public `verioralabs/Website-Hositng-CuraOS.Health` **`87f9216`** · Branch `main` both. Logo now `CuraOS_Logo-E.png` 928981 header `brand-logo flex` `h-10 w-auto object-contain`, marketing `Install App` → `https://app.curaos.health/?install=true`, manifest `start_url: https://app.curaos.health/`.
+Last updated: **2026-09-17** · Visual/UX overhaul to design system **v3** (not yet committed/pushed — see below). Prior sync point: Private `verioralabs/CuraOS` HEAD **`e27eecf`** (logo E + PWA redirect) · Public `verioralabs/Website-Hositng-CuraOS.Health` **`87f9216`** · Branch `main` both. Logo `CuraOS_Logo-E.png` 928981 header `brand-logo flex` `h-10 w-auto object-contain`, marketing `Install App` → `https://app.curaos.health/?install=true`, manifest `start_url: https://app.curaos.health/`.
+
+## 2026-09-17 — Premium SaaS visual/UX overhaul (design system v3)
+
+Full in-place redesign of `index.html` / `css/style.css` / `js/main.js` (still plain
+HTML/CSS/JS, **no framework migration** — confirmed with owner: static stack stays,
+Tailwind/Next.js/TSX was not applicable to this repo). No git commit made yet (per
+standing instructions, only commit when explicitly asked).
+
+- **Hero**: fluid `clamp()` type scale, gradient `accent-text` span, ambient blurred
+  glow blobs (`.hero-glow`), animated hero-meta count-up stats (490 endpoints / 145
+  routes / 4 consoles via `data-countup` + IntersectionObserver in `main.js`),
+  interactive **product mockup frame** (`.mockup-frame`) — macOS-style chrome +
+  3-tab live preview (Hospital / Pharmacy / WaitList) that swaps stat rows + the
+  fake URL bar on click.
+- **Trust/logo carousel**: new `.marquee-section` — CSS-only infinite scroll of the
+  6 module logos, pauses on hover, `mask-image` fade edges.
+- **Buttons**: primary solid w/ hover-lift + shadow, ghost w/ glass blur, new
+  `.btn-on-dark` for the dark CTA band; all buttons/links enforce `min-height:44px`
+  touch target; global `:focus-visible` rings added site-wide for a11y.
+- **Pricing**: new **Monthly/Annual billing toggle** (`#billingMonthly` /
+  `#billingAnnual`) recomputes the 4 static plan cards client-side (`data-monthly`
+  attr, ~2-months-free annual factor) — the dynamic regional badges
+  (`price-cura-*`, GeoIP-driven) are untouched/separate.
+- **Dark CTA band**: new `.cta-band` (glass card on radial-glow dark surface) before
+  the footer — final conversion push, mirrors Stripe/Linear closing pattern.
+- **Scroll-reveal**: `[data-reveal]` + IntersectionObserver, **hardened with a
+  redundant fallback** (scroll/resize listeners + a self-terminating 150ms safety
+  poll) so content can never get stuck invisible — verified via headless-Chromium
+  Playwright smoke test (see below) after an early version showed reveal misses
+  under synthetic instant-scroll testing.
+- **Bug fix (pre-existing, unrelated to this task)**: `price-cura-hospital` badge
+  in the Modules grid never synced with live/fallback regional pricing (only
+  `price-cura-ihms` did, despite sharing `data-module="cura-ihms"`) — `main.js`
+  `loadPricing()` now mirrors the IHMS price onto both elements in both the live
+  and fallback code paths.
+- **QA**: verified with a throwaway Playwright harness (Chromium, desktop 1440×900
+  + mobile 390×844) — 0px horizontal overflow both viewports, all touch targets
+  ≥44px, mockup tabs / billing toggle / hamburger menu / count-up all functional,
+  no console `pageerror`s (only the expected CORS failure hitting the real
+  `api.curaos.health` from a `localhost` origin, which the existing fallback-price
+  catch block already handles gracefully).
+- Files touched: `index.html` (structure), `css/style.css` (design system v3,
+  ~fully rewritten, class names kept backward-compatible where JS binds by id),
+  `js/main.js` (added count-up, mockup tabs, billing toggle, hardened reveal,
+  IHMS↔hospital price-mirroring fix — all existing PWA-install/i18n/hamburger/
+  regional-pricing logic left intact and re-verified working).
+- **Not done / follow-ups**: no git commit/push (owner said only commit when
+  asked); public Pages mirror repo (`Website-Hositng-CuraOS.Health`) not touched;
+  screenshots from the QA pass are outside the repo in the local temp scratch dir,
+  not committed.
 
 ## TL;DR Resume
 
@@ -273,3 +323,13 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 
 - **Decision (owner-confirmed):** `CuraOS_Website/` subtree is the ONLY publisher to `verioralabs/Website-Hositng-CuraOS.Health` (Pages → curaos.health). `.github/workflows/deploy_website.yml` published `frontend/out/` over the same repo and could silently clobber live fixes — renamed to `deploy_website.yml.disabled` with an in-file note; it can never trigger again. Verified live 2026-09-16: apex serves the subtree (ISO-code selects, Clinic $149 card, SVG badges, module icons).
 - **Still pending deploy:** `app.`/`admin.` serve the pre-`2b51720` Next.js build (flag emoji, old icons) — P0-1 redirect goes live only after Coolify redeploys the private `main`.
+
+## 21. 2026-09-17 — Icons, favicon, pricing, parent brand (this change)
+
+- **Module icons (all 6, both grids):** client `media/` arts wired — Hospital/Clinic/Rx/Labs/WaitList/Doctor (Doctor3 current; Clinic2/Hospital3/Rx3/Labs2/WaitList2/Hospital-new current; `.bold.png` dilated-stroke variants generated for the thin originals, still used where no refresh exists). Chips `background:#EEF2FF`, no invert filters, art 32px in 40px boxes. Doctor mirrors Clinic Popular treatment (green pill + tinted card); Hospital carries amber `flagship-badge` (`style.css:366`, never green).
+- **Favicon:** `CuraOS-favicon.png` adopted everywhere (`index.html`, `manifest.json`, `sw.js` v13); transparent-background version generated (white box stripped, original kept as `.whitebox-backup.png`); cache-busting rename to `CuraOS-favicon.v2.png`; legacy `favicon*.png/.ico` + `apple-touch-icon.png` deleted. Verified live on apex.
+- **Pricing display:** `js/main.js` `formatPrice` drops zero decimals (`$5,000` not `$5,000.00`); script cache-busted to `?v=2.5` after stale-SW incident (hard refresh does not clear Cache Storage).
+- **Clinic card** added to pricing grid (`$149`, links `?plan=cura-clinic`); WaitList copy upgraded to full Smart Flow set on both cards.
+- **Parent brand:** `media/Logo_VerioraLabs.transparent.png` prepped (cropped + de-boxed, original kept); footer chip (`.parent-logo`, specificity-fixed `38f8270`) + linked.
+- **Flags:** emoji flags replaced with ISO codes in both selects (SW TZ→KE per directive, EN→US per owner); zero color emoji remain on marketing surfaces.
+- **Verify:** text grep clean; live apex fetch confirms v2 favicon + Clinic card + ISO codes. Private `2b51720`→`77f893d` range, public `269c702`→`c13fb90` range.

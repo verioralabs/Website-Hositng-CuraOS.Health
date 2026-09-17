@@ -121,8 +121,14 @@
       const data = await res.json();
       const tiers = data.tiers || [];
       tiers.forEach(t=>{
+        const formatted = formatPrice(t.monthly_price, t.currency_code) + "/mo";
         const el = document.getElementById("price-" + t.module_code);
-        if(el) el.textContent = formatPrice(t.monthly_price, t.currency_code) + "/mo";
+        if(el) el.textContent = formatted;
+        // Mirror IHMS (flagship) price onto the Modules-grid hospital badge too
+        if(t.module_code === 'cura-ihms'){
+          const hospitalEl = document.getElementById('price-cura-hospital');
+          if(hospitalEl) hospitalEl.textContent = formatted;
+        }
       });
       const note = document.getElementById("ihmsCountryNote");
       if(note) note.textContent = (data.country || cleanCountry || "US") + " pricing · " + (data.currency || "USD") + " · Auto-detected region · Switch currency above";
@@ -130,8 +136,9 @@
     }catch(e){
       const fallbackMap = (cleanCountry && REGIONAL_FALLBACK[cleanCountry]) ? REGIONAL_FALLBACK[cleanCountry] : null;
       Object.keys(FALLBACK_PRICES).forEach(code=>{
-        const el = document.getElementById("price-" + code) || (code==='cura-ihms' ? document.getElementById('price-cura-hospital') : null);
-        if(el){
+        const els = [document.getElementById("price-" + code)];
+        if(code === 'cura-ihms') els.push(document.getElementById('price-cura-hospital'));
+        els.filter(Boolean).forEach(el=>{
           if (fallbackMap) {
             const key = { "cura-rx":"rx","cura-doctor":"doctor","cura-labs":"labs","cura-waitlist":"waitlist","cura-clinic":"clinic","cura-ihms":"ihms" }[code] || code;
             el.textContent = formatPrice(fallbackMap[key] || FALLBACK_PRICES[code].price, fallbackMap.currency) + "/mo";
@@ -139,7 +146,7 @@
             const p = FALLBACK_PRICES[code];
             el.textContent = formatPrice(p.price, p.currency) + "/mo";
           }
-        }
+        });
       });
     }
   }
@@ -175,5 +182,159 @@
       document.documentElement.lang = lang;
       document.documentElement.dir = (lang==='ar' || lang==='ur') ? 'rtl' : 'ltr';
     });
+  }
+
+  // ---- Scroll-reveal for [data-reveal] elements ----
+  // Primary: IntersectionObserver (efficient, GPU-friendly).
+  // Backup: manual rect-check on scroll/resize/load so content can never stay
+  // stuck invisible for a real user due to an observer edge case.
+  const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+  if(revealEls.length){
+    const reveal = (el)=> el.classList.add('is-visible');
+    let revealObserver = null;
+    if('IntersectionObserver' in window){
+      revealObserver = new IntersectionObserver((entries, obs)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            reveal(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.1, rootMargin:'0px 0px -10% 0px'});
+      revealEls.forEach(el=>revealObserver.observe(el));
+    }
+
+    function manualRevealPass(){
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      revealEls.forEach(el=>{
+        if(el.classList.contains('is-visible')) return;
+        const r = el.getBoundingClientRect();
+        if(r.top < vh * 1.05 && r.bottom > -vh * 0.05){
+          reveal(el);
+          if(revealObserver) revealObserver.unobserve(el);
+        }
+      });
+    }
+    let manualRevealScheduled = false;
+    function scheduleManualReveal(){
+      if(manualRevealScheduled) return;
+      manualRevealScheduled = true;
+      requestAnimationFrame(()=>{ manualRevealScheduled = false; manualRevealPass(); });
+    }
+    window.addEventListener('scroll', scheduleManualReveal, {passive:true});
+    window.addEventListener('resize', scheduleManualReveal);
+    window.addEventListener('load', manualRevealPass);
+
+    // Self-terminating safety poll: guarantees every [data-reveal] element
+    // resolves within ~500ms of entering the viewport even in edge cases
+    // where neither IntersectionObserver nor scroll/resize events fire
+    // (e.g. programmatic scroll, some in-app browsers/automation).
+    manualRevealPass();
+    const safetyPoll = setInterval(()=>{
+      manualRevealPass();
+      if(revealEls.every(el=>el.classList.contains('is-visible'))){
+        clearInterval(safetyPoll);
+      }
+    }, 150);
+    // Hard stop after 20s regardless, so we never leave a stray interval running.
+    setTimeout(()=>clearInterval(safetyPoll), 20000);
+  }
+
+  // ---- Hero metric count-up (runs once when hero scrolls into view) ----
+  const countEls = Array.from(document.querySelectorAll('[data-countup]'));
+  function animateCount(el){
+    const target = parseInt(el.getAttribute('data-countup'), 10) || 0;
+    const duration = 1200;
+    const start = performance.now();
+    function tick(now){
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased).toString();
+      if(progress < 1) requestAnimationFrame(tick);
+      else el.textContent = target.toString();
+    }
+    requestAnimationFrame(tick);
+  }
+  if(countEls.length){
+    if('IntersectionObserver' in window){
+      const countObserver = new IntersectionObserver((entries, obs)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            animateCount(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.4});
+      countEls.forEach(el=>countObserver.observe(el));
+    }else{
+      countEls.forEach(el=>{ el.textContent = el.getAttribute('data-countup'); });
+    }
+  }
+
+  // ---- Hero product mockup — interactive tab preview ----
+  const mockupTabs = Array.from(document.querySelectorAll('.mockup-tab'));
+  const mockupUrl = document.getElementById('mockupUrl');
+  if(mockupTabs.length){
+    mockupTabs.forEach(tab=>{
+      tab.addEventListener('click', ()=>{
+        const panelId = tab.getAttribute('data-panel');
+        mockupTabs.forEach(t=>{
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        document.querySelectorAll('.mockup-panel').forEach(panel=>{
+          const active = panel.id === panelId;
+          panel.classList.toggle('is-active', active);
+          panel.hidden = !active;
+        });
+        if(mockupUrl && tab.getAttribute('data-url')) mockupUrl.textContent = tab.getAttribute('data-url');
+      });
+    });
+  }
+
+  // ---- Pricing — monthly / annual billing toggle ----
+  const billingMonthlyBtn = document.getElementById('billingMonthly');
+  const billingAnnualBtn = document.getElementById('billingAnnual');
+  const ANNUAL_FACTOR = 10 / 12; // ~2 months free when billed annually
+  function formatUsdLike(amount, template){
+    // Preserve original formatting style (commas, no decimals) based on template string
+    const hasComma = /,/.test(template);
+    const rounded = Math.round(amount);
+    let str = rounded.toString();
+    if(hasComma) str = rounded.toLocaleString('en-US');
+    return '$' + str;
+  }
+  function applyBillingPeriod(period){
+    document.querySelectorAll('[data-plan-amount]').forEach(el=>{
+      const monthly = parseFloat(el.getAttribute('data-monthly'));
+      if(Number.isNaN(monthly)) return;
+      if(!el.dataset.original) el.dataset.original = el.textContent;
+      if(period === 'annual'){
+        el.textContent = formatUsdLike(monthly * ANNUAL_FACTOR, el.dataset.original);
+      }else{
+        el.textContent = el.dataset.original;
+      }
+    });
+    document.querySelectorAll('[data-plan-period]').forEach(el=>{
+      if(!el.dataset.original) el.dataset.original = el.textContent;
+      if(period === 'annual'){
+        el.textContent = el.dataset.original.replace('/ mo', '/ mo, billed annually').replace('/ module / mo', '/ module / mo, billed annually');
+      }else{
+        el.textContent = el.dataset.original;
+      }
+    });
+    if(billingMonthlyBtn){
+      billingMonthlyBtn.classList.toggle('is-active', period === 'monthly');
+      billingMonthlyBtn.setAttribute('aria-pressed', period === 'monthly' ? 'true' : 'false');
+    }
+    if(billingAnnualBtn){
+      billingAnnualBtn.classList.toggle('is-active', period === 'annual');
+      billingAnnualBtn.setAttribute('aria-pressed', period === 'annual' ? 'true' : 'false');
+    }
+  }
+  if(billingMonthlyBtn && billingAnnualBtn){
+    billingMonthlyBtn.addEventListener('click', ()=>applyBillingPeriod('monthly'));
+    billingAnnualBtn.addEventListener('click', ()=>applyBillingPeriod('annual'));
   }
 })();
