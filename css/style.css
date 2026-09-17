@@ -363,3 +363,8 @@ a.brand-logo img{
   background:#059669;color:white;
   padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0;
 }
+.flagship-badge{
+  display:inline-block;margin-left:6px;
+  background:#d97706;color:white;
+  padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0;
+}
