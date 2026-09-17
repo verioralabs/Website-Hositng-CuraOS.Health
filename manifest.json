@@ -10,6 +10,6 @@
   "theme_color": "#0f172a",
   "icons": [
     { "src": "media/logo.png", "sizes": "any", "type": "image/png", "purpose": "any" },
-    { "src": "CuraOS-favicon.png", "sizes": "any", "type": "image/png", "purpose": "any" }
+    { "src": "CuraOS-favicon.v2.png", "sizes": "any", "type": "image/png", "purpose": "any" }
   ]
 }
