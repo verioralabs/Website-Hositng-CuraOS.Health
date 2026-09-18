@@ -403,3 +403,9 @@ Details: `.lifenet-featured-inner` is now
 areas `"head badge" / "body cta"`; card padding `28px`. <768px collapses to a
 single column in Header → Badge → Body → full-width CTA order. Cache-bust
 `css/js?v=3.3` → `v3.4`, SW `curaos-site-v3.3` → `curaos-site-v3.4`.
+
+## 27. 2026-09-18 — v3.5 title clarity + cache bump
+
+### v3.5 - Title Clarity & SW Cache Bump
+- Renamed card title to 'CuraOS-LifeNet (Blood Bank)' to match 'CuraOS-Hospital (Enterprise)' convention.
+- Incremented Service Worker cache key to curaos-site-v3.5.
