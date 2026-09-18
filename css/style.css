@@ -633,10 +633,12 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
   gap:20px;min-width:0;
 }
 .lifenet-featured-main{min-width:0;flex:1 1 auto}
-/* Lock the icon/price top row: icon left, price pill right, shared center line */
-.lifenet-featured .card-top{align-items:center;gap:12px;flex-wrap:nowrap}
+/* LifeNet header: left brand cluster (icon + title), price badge right */
+.lifenet-featured .card-top{display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px;flex-wrap:nowrap}
+.lifenet-brand{display:flex;align-items:center;gap:12px;min-width:0}
 .lifenet-featured .icon-wrap{flex:0 0 auto}
-.lifenet-featured .price{flex:0 0 auto;align-self:center;line-height:1.5}
+.lifenet-featured .lifenet-title{margin:0;font-size:18px;color:var(--brand-dark);white-space:nowrap}
+.lifenet-featured .price{margin-left:auto;flex-shrink:0;align-self:center;line-height:1.5}
 .lifenet-cta{
   flex:0 0 auto;white-space:nowrap;max-width:100%;
   background:#fff1f2;border:1px solid #fecdd3;color:#be123c;
@@ -648,6 +650,6 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
   .lifenet-cta{justify-content:center;text-align:center;white-space:normal}
 }
 @media(max-width:600px){
-  .lifenet-featured .card-top{flex-wrap:nowrap}
+  .lifenet-featured .card-top{flex-wrap:wrap;row-gap:10px}
   .lifenet-cta{width:100%}
 }

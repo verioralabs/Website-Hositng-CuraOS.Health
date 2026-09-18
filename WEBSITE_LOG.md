@@ -369,3 +369,19 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 - **Link target** (red-team verify): the whole LifeNet card links `https://app.curaos.health/blood-finder` with `target="_blank" rel="noopener noreferrer"`.
 - **Mobile hardening**: card/inner/main all `min-width:0` (grid-blowout safe); ≤900px stacks CTA below the copy; ≤600px keeps the icon/price top row on one line and stretches the CTA to a full-width centered pill (`width:100%`, `white-space:normal`, `max-width:100%`) — no horizontal overflow, no distortion.
 - Cache-bust `css/js?v=3.1` → `v3.2`, SW `curaos-site-v14` → `v15`.
+
+## 25. 2026-09-18 — v3.3 cache invalidation + LifeNet header hardening
+
+### v3.3 - LifeNet Card Layout & SW Cache Invalidation
+- Bumping Service Worker cache key to v3.3 to force browser refresh of style.css.
+- Hardened LifeNet hero card header flexbox (Icon, Title, $129/mo price badge alignment).
+- Documented deployment state in system changelog.
+
+Details: `index.html` + `sw.js` precache refs `?v=3.2` → `?v=3.3`, SW `CACHE`
+`curaos-site-v15` → `curaos-site-v3.3` (activate handler purges the stale
+v3.2/v3.1 caches). LifeNet header restructured to a left brand cluster
+(`.lifenet-brand`: icon + `h3.lifenet-title`) with the `$129/mo` pill pushed
+right via `margin-left:auto;flex-shrink:0;align-self:center`; header wrapper is
+explicit `display:flex;align-items:center;justify-content:space-between;width:100%`.
+≤600px the header may wrap (price drops to its own right-aligned line) so
+320–360px phones never overflow; CTA stays full-width below.
