@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3.5">
+  <link rel="stylesheet" href="css/style.css?v=3.6">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -129,6 +129,7 @@
               <button class="mockup-tab is-active" type="button" role="tab" aria-selected="true" data-panel="tab-hospital" data-url="app.curaos.health/hospital">Hospital</button>
               <button class="mockup-tab" type="button" role="tab" aria-selected="false" data-panel="tab-rx" data-url="app.curaos.health/rx">Pharmacy</button>
               <button class="mockup-tab" type="button" role="tab" aria-selected="false" data-panel="tab-waitlist" data-url="app.curaos.health/waitlist">WaitList</button>
+              <button class="mockup-tab mockup-tab-blood" type="button" role="tab" aria-selected="false" data-panel="tab-blood" data-url="app.curaos.health/blood-finder"><span class="blood-dot" aria-hidden="true"></span>Blood Bank</button>
             </div>
             <div class="mockup-body">
               <div class="mockup-panel is-active" id="tab-hospital" role="tabpanel">
@@ -170,8 +171,33 @@
                 </div>
                 <div class="mockup-live"><span class="live-dot"></span> TV board — spoken announcements</div>
               </div>
+              <div class="mockup-panel" id="tab-blood" role="tabpanel" hidden>
+                <div class="mockup-stat-row">
+                  <div class="mockup-stat">
+                    <span class="mockup-stat-icon" style="background:#FFF1F2"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#be123c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 0 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+                    <div><strong>O−Negative</strong> 14 units<span class="label">3 connected hospitals</span></div>
+                  </div>
+                  <div class="mockup-stat">
+                    <span class="mockup-stat-icon" style="background:#FFF1F2"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#be123c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+                    <div><strong>1,200+ units</strong> tracked live<span class="label">ABO/Rh · verified donors</span></div>
+                  </div>
+                </div>
+                <div class="mockup-blood-row" aria-label="Live ABO Rh stock">
+                  <span class="blood-chip">O− 14</span>
+                  <span class="blood-chip">O+ 42</span>
+                  <span class="blood-chip">A+ 38</span>
+                  <span class="blood-chip">B+ 25</span>
+                  <span class="blood-chip low">AB− 3</span>
+                </div>
+                <a href="https://app.curaos.health/blood-finder" target="_blank" rel="noopener noreferrer" class="mockup-cta">Find Emergency Blood →</a>
+                <div class="mockup-live"><span class="live-dot"></span> LifeNet network — live sync</div>
+              </div>
             </div>
           </div>
+          <a class="hero-proof-pill" href="https://app.curaos.health/blood-finder" target="_blank" rel="noopener noreferrer" title="Open the live emergency blood finder" data-reveal>
+            <span class="emergency-pulse" aria-hidden="true"></span>
+            <span><strong>CuraOS-LifeNet:</strong> Live emergency network active across regional hospitals <span class="hero-proof-link">Search Blood →</span></span>
+          </a>
         </div>
       </div>
     </section>
@@ -604,6 +630,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=3.5"></script>
+  <script src="js/main.js?v=3.6"></script>
 </body>
 </html>

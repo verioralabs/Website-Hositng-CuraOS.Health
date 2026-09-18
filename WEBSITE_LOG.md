@@ -409,3 +409,14 @@ single column in Header → Badge → Body → full-width CTA order. Cache-bust
 ### v3.5 - Title Clarity & SW Cache Bump
 - Renamed card title to 'CuraOS-LifeNet (Blood Bank)' to match 'CuraOS-Hospital (Enterprise)' convention.
 - Incremented Service Worker cache key to curaos-site-v3.5.
+
+## 28. 2026-09-18 — v3.6 hero emergency blood discovery
+
+### v3.6 - Hero Blood Bank Tab & Emergency Proof Pill
+- Added a 4th `Blood Bank` tab (red pulse dot) to the hero browser mockup with a
+  blood-finder preview panel (O− 14 units / 3 hospitals, 1,200+ units tracked,
+  ABO/Rh chips, `Find Emergency Blood →` CTA to `blood-finder`).
+- Added a floating glassmorphism proof pill below the mockup linking to the
+  emergency blood finder (`target="_blank" rel="noopener noreferrer"`).
+- Full hospital preview kept as the default tab; no pricing badges in the hero.
+- Cache-bust `css/js?v=3.5` → `v3.6`, SW `curaos-site-v3.5` → `curaos-site-v3.6`.

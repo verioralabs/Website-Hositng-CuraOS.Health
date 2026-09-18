@@ -210,7 +210,7 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 .hero-stat{display:flex;flex-direction:column}
 .hero-stat b{font-size:22px;font-weight:900;color:var(--brand-dark);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .hero-stat span{font-size:12px;color:var(--text-muted);font-weight:600;margin-top:2px}
-.hero-media{display:flex;justify-content:center}
+.hero-media{display:flex;flex-direction:column;align-items:center;gap:14px}
 
 /* Product mockup — macOS-style browser frame */
 .mockup-frame{
@@ -242,6 +242,10 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 }
 .mockup-tab:hover{color:var(--brand-dark);background:#f8fafc}
 .mockup-tab.is-active{background:#fff;color:var(--brand-dark);border-color:#e2e8f0;box-shadow:0 -2px 0 var(--accent) inset}
+.mockup-tab-blood{display:inline-flex;align-items:center;gap:6px;color:#be123c}
+.mockup-tab-blood:hover{color:#9f1239}
+.mockup-tab-blood.is-active{color:#9f1239;box-shadow:0 -2px 0 #e11d48 inset}
+.blood-dot{width:8px;height:8px;border-radius:999px;background:#e11d48;display:inline-block;flex:0 0 8px;box-shadow:0 0 0 0 rgba(225,29,72,.45);animation:emergency-pulse 1.8s ease-out infinite}
 .mockup-body{padding:16px;background:linear-gradient(135deg,rgba(234,244,255,0.6),rgba(244,234,254,0.6));border-top:1px solid #e2e8f0}
 .mockup-panel{display:none;animation:fade-up var(--dur-med) var(--ease-out)}
 .mockup-panel.is-active{display:block}
@@ -262,6 +266,30 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
   padding:6px 10px;font-size:11px;font-weight:700;color:#0f172a;
 }
 .live-dot{width:7px;height:7px;border-radius:999px;background:#22c55e;display:inline-block;animation:pulse-dot 2s ease-in-out infinite}
+/* Blood Bank panel — ABO/Rh chips + emergency CTA */
+.mockup-blood-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.blood-chip{background:#fff;border:1px solid #fecdd3;color:#be123c;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px}
+.blood-chip.low{background:#e11d48;border-color:#e11d48;color:#fff}
+.mockup-cta{
+  margin-top:10px;display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;
+  background:#e11d48;color:#fff;font-size:12px;font-weight:800;
+  padding:10px 14px;border-radius:10px;min-height:44px;
+  transition:background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.mockup-cta:hover{background:#be123c;transform:translateY(-1px)}
+/* Floating emergency proof pill below the hero mockup */
+.hero-proof-pill{
+  display:flex;align-items:center;gap:10px;width:100%;max-width:440px;min-width:0;
+  background:rgba(255,255,255,0.72);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
+  border:1px solid #fecdd3;border-radius:999px;padding:10px 16px;
+  font-size:12px;line-height:1.5;color:#7f1d1d;box-shadow:var(--shadow-md);
+  transition:transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.hero-proof-pill:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.hero-proof-pill strong{color:#be123c}
+.hero-proof-link{font-weight:800;color:#be123c;white-space:nowrap}
+@media(max-width:600px){.hero-proof-pill{border-radius:16px}}
 
 /* ==========================================================================
    Trust marquee / logo carousel
