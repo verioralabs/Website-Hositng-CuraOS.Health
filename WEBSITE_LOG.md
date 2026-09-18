@@ -432,3 +432,18 @@ single column in Header → Badge → Body → full-width CTA order. Cache-bust
 - (Spec draft said v3.6, but v3.6 already shipped live — bumped to v3.7 so
   caches actually invalidate.) Cache-bust `css/js?v=3.6` → `v3.7`, SW
   `curaos-site-v3.6` → `curaos-site-v3.7`.
+
+## 30. 2026-09-18 — v3.8 premium navbar polish
+
+### v3.8 - Custom Utility Pills & Nav Alignment
+- Replaced the raw native `<select>` boxes with custom glassmorphism pill
+  dropdowns: globe icon + short language code (`EN`) and pin icon + currency
+  (`Auto`/`USD`/…) with caret, hover lift, grouped scrollable menus built from
+  the selects' own options (single source of truth; picks proxy through the
+  untouched native change handlers). Native selects stay as a no-JS fallback.
+- `Emergency Blood Finder` is now strictly single-line (`white-space:nowrap`)
+  with the 16px `CuraOS-BloodBank.svg` icon (5px right margin) inside a subtle
+  red accent pill; same icon treatment in the mobile menu.
+- Header locked to a 68px center-aligned flex line; right-side utility group
+  gap 12px; pills hide ≤1100px to declutter laptop/tablet headers.
+- Cache-bust `css/js?v=3.7` → `v3.8`, SW `curaos-site-v3.7` → `curaos-site-v3.8`.

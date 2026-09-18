@@ -192,6 +192,74 @@
     });
   }
 
+  // ---- Premium navbar: custom pill dropdowns proxying the native selects ----
+  // Menus are generated from the selects' own <option>s (single source of truth);
+  // picking an item syncs the hidden select and fires its native change handler.
+  (function initUtilDropdowns(){
+    const roots = Array.from(document.querySelectorAll('.util-dropdown'));
+    if(!roots.length) return;
+    let built = 0;
+    function shortLabel(select, opt){
+      if(select.id === 'languageSelect') return (opt.value || '').toUpperCase();
+      if(opt.value === 'auto') return 'Auto';
+      return (opt.textContent || '').trim().split(/\s+/)[0] || opt.value;
+    }
+    function closeAll(){
+      document.querySelectorAll('.util-menu').forEach(m=>{ m.hidden = true; });
+      document.querySelectorAll('.util-pill').forEach(p=>p.setAttribute('aria-expanded', 'false'));
+    }
+    roots.forEach(root=>{
+      const select = document.getElementById(root.getAttribute('data-select'));
+      const btn = root.querySelector('.util-pill');
+      const menu = root.querySelector('.util-menu');
+      const label = btn ? btn.querySelector('.util-label') : null;
+      if(!select || !btn || !menu || !label) return;
+      function closeMenu(){ menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+      function makeItem(opt){
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'util-item';
+        item.setAttribute('role', 'option');
+        item.textContent = opt.textContent.trim();
+        item.setAttribute('aria-selected', opt.selected ? 'true' : 'false');
+        item.addEventListener('click', ()=>{
+          select.value = opt.value;
+          select.dispatchEvent(new Event('change', {bubbles:true}));
+          label.textContent = shortLabel(select, opt);
+          menu.querySelectorAll('.util-item').forEach(i=>i.setAttribute('aria-selected', i === item ? 'true' : 'false'));
+          closeMenu();
+          btn.focus();
+        });
+        return item;
+      }
+      Array.from(select.children).forEach(node=>{
+        if(node.tagName === 'OPTGROUP'){
+          const head = document.createElement('div');
+          head.className = 'util-group';
+          head.textContent = node.label;
+          menu.appendChild(head);
+          Array.from(node.children).forEach(opt=>menu.appendChild(makeItem(opt)));
+        }else if(node.tagName === 'OPTION'){
+          menu.appendChild(makeItem(node));
+        }
+      });
+      const current = select.options[select.selectedIndex];
+      if(current) label.textContent = shortLabel(select, current);
+      btn.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const willOpen = menu.hidden;
+        closeAll();
+        menu.hidden = !willOpen;
+        btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+      menu.addEventListener('click', (e)=>e.stopPropagation());
+      document.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+      built++;
+    });
+    if(built) document.documentElement.classList.add('js-util');
+  })();
+
   // ---- Scroll-reveal for [data-reveal] elements ----
   // Primary: IntersectionObserver (efficient, GPU-friendly).
   // Backup: manual rect-check on scroll/resize/load so content can never stay

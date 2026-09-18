@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3.7">
+  <link rel="stylesheet" href="css/style.css?v=3.8">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -28,10 +28,16 @@
         <a href="#platform">Platform</a>
         <a href="#pricing">Pricing</a>
         <a href="#pwa">PWA</a>
-        <a href="https://app.curaos.health/blood-finder" class="emergency-nav"><span class="emergency-pulse" aria-hidden="true"></span>Emergency Blood Finder</a>
+        <a href="https://app.curaos.health/blood-finder" class="emergency-nav"><img src="media/CuraOS-BloodBank.svg" width="16" height="16" class="nav-blood-icon" alt="">Emergency Blood Finder</a>
         <a href="https://github.com/verioralabs/CuraOS" target="_blank" rel="noreferrer">Docs</a>
       </nav>
       <div class="topbar-actions">
+        <div class="util-dropdown" data-select="languageSelect">
+          <button type="button" class="util-pill" aria-haspopup="listbox" aria-expanded="false" title="Choose language">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="util-label">EN</span><svg class="util-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="util-menu" role="listbox" aria-label="Language" hidden></div>
+        </div>
         <label for="languageSelect" class="sr-only">Language</label>
         <select id="languageSelect" title="Choose language">
           <option value="en">US EN — English</option>
@@ -46,6 +52,12 @@
           <option value="ur">PK UR — اردو</option>
           <option value="sw">KE SW — Kiswahili</option>
         </select>
+        <div class="util-dropdown" data-select="currencySelect">
+          <button type="button" class="util-pill" aria-haspopup="listbox" aria-expanded="false" title="Choose currency">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="util-label">Auto</span><svg class="util-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="util-menu" role="listbox" aria-label="Currency" hidden></div>
+        </div>
         <label for="currencySelect" class="sr-only">Currency</label>
         <select id="currencySelect" title="Choose currency">
           <option value="auto">Auto (GeoIP)</option>
@@ -88,7 +100,7 @@
       <a href="#platform">Platform</a>
       <a href="#pricing">Pricing</a>
       <a href="#pwa">PWA</a>
-      <a href="https://app.curaos.health/blood-finder" class="emergency-nav"><span class="emergency-pulse" aria-hidden="true"></span>Emergency Blood Finder</a>
+      <a href="https://app.curaos.health/blood-finder" class="emergency-nav"><img src="media/CuraOS-BloodBank.svg" width="16" height="16" class="nav-blood-icon" alt="">Emergency Blood Finder</a>
       <a href="#pricing" class="btn btn-primary">Get Started</a>
     </div>
   </header>
@@ -630,6 +642,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=3.7"></script>
+  <script src="js/main.js?v=3.8"></script>
 </body>
 </html>
