@@ -627,19 +627,27 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 /* ==========================================================================
    CuraOS-LifeNet full-width featured banner (below 6-card core grid)
    ========================================================================== */
-.lifenet-featured{grid-column:1 / -1}
+.lifenet-featured{grid-column:1 / -1;min-width:0}
 .lifenet-featured-inner{
   display:flex;align-items:center;justify-content:space-between;
   gap:20px;min-width:0;
 }
 .lifenet-featured-main{min-width:0;flex:1 1 auto}
+/* Lock the icon/price top row: icon left, price pill right, shared center line */
+.lifenet-featured .card-top{align-items:center;gap:12px;flex-wrap:nowrap}
+.lifenet-featured .icon-wrap{flex:0 0 auto}
+.lifenet-featured .price{flex:0 0 auto;align-self:center;line-height:1.5}
 .lifenet-cta{
-  flex:0 0 auto;white-space:nowrap;
+  flex:0 0 auto;white-space:nowrap;max-width:100%;
   background:#fff1f2;border:1px solid #fecdd3;color:#be123c;
   padding:10px 16px;border-radius:999px;
 }
 .card:hover .lifenet-cta{gap:8px;background:#ffe4e6}
 @media(max-width:900px){
-  .lifenet-featured-inner{flex-direction:column;align-items:stretch}
+  .lifenet-featured-inner{flex-direction:column;align-items:stretch;gap:16px}
   .lifenet-cta{justify-content:center;text-align:center;white-space:normal}
+}
+@media(max-width:600px){
+  .lifenet-featured .card-top{flex-wrap:nowrap}
+  .lifenet-cta{width:100%}
 }

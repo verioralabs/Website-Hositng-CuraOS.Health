@@ -362,3 +362,10 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 - **CuraOS-LifeNet full-width spotlight** (`grid-column:1 / -1`, `.lifenet-featured`) below the core grid: title `CuraOS-LifeNet`, tag `ENTERPRISE / PUBLIC EMERGENCY NETWORK`, `$129/mo` badge, ABO/Rh + anti-fraud donor verification + B2B transfers + public finder copy, CTA `Explore Blood Bank & LifeNet →` → `https://app.curaos.health/blood-finder`. Stacks vertically under 900px.
 - Marquee renamed `CuraOS-Blood` → `CuraOS-LifeNet` (both loop copies); suite count stays seven.
 - Cache-bust `css/js?v=3.0` → `v3.1`, SW `curaos-site-v13` → `v14`.
+
+## 24. 2026-09-18 — LifeNet banner alignment polish + new-tab CTA + mobile hardening
+
+- **Price-pill alignment lock** (`.lifenet-featured .card-top` / `.icon-wrap` / `.price` in `css/style.css`): explicit `gap:12px` + `flex-wrap:nowrap`, icon `flex:0 0 auto`, price `flex:0 0 auto;align-self:center;line-height:1.5` — icon and `$129/mo` pill now share one center line and neither can shrink/wrap out of place at any viewport.
+- **Link target** (red-team verify): the whole LifeNet card links `https://app.curaos.health/blood-finder` with `target="_blank" rel="noopener noreferrer"`.
+- **Mobile hardening**: card/inner/main all `min-width:0` (grid-blowout safe); ≤900px stacks CTA below the copy; ≤600px keeps the icon/price top row on one line and stretches the CTA to a full-width centered pill (`width:100%`, `white-space:normal`, `max-width:100%`) — no horizontal overflow, no distortion.
+- Cache-bust `css/js?v=3.1` → `v3.2`, SW `curaos-site-v14` → `v15`.
