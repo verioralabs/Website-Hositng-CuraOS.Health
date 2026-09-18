@@ -584,3 +584,62 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 .grid > [data-reveal]:nth-child(4){transition-delay:180ms}
 .grid > [data-reveal]:nth-child(5){transition-delay:240ms}
 .grid > [data-reveal]:nth-child(6){transition-delay:300ms}
+
+/* ==========================================================================
+   Live Deployments / Powered Hospitals trust banner (below hero)
+   ========================================================================== */
+.live-deployments{padding:18px 0 0;background:white;border-bottom:1px solid var(--border)}
+.live-deploy-card{
+  display:block;max-width:100%;overflow:hidden;
+  background:linear-gradient(135deg,#f0fdf4 0%,#f8fafc 60%,#fff 100%);
+  border:1px solid #bbf7d0;border-radius:var(--radius);
+  padding:14px 18px;text-align:center;
+  transition:transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+}
+.live-deploy-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.live-deploy-eyebrow{
+  display:block;font-size:11px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:#64748b;
+}
+.live-deploy-main{
+  margin-top:8px;display:flex;flex-wrap:wrap;gap:8px 12px;
+  align-items:center;justify-content:center;
+}
+.live-deploy-hospital{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:15px;font-weight:800;color:var(--brand-dark);
+  min-width:0;
+}
+.live-deploy-badge{
+  display:inline-flex;align-items:center;
+  background:#16a34a;color:#fff;
+  font-size:11px;font-weight:800;letter-spacing:.04em;
+  padding:5px 10px;border-radius:999px;white-space:nowrap;
+}
+.live-deploy-sub{display:block;margin-top:6px;font-size:12px;color:#64748b}
+.live-deploy-link{font-weight:800;color:#15803d;white-space:nowrap}
+@media(max-width:600px){
+  .live-deploy-card{padding:14px}
+  .live-deploy-hospital{font-size:14px}
+  .live-deploy-main{flex-direction:column}
+}
+
+/* ==========================================================================
+   CuraOS-LifeNet full-width featured banner (below 6-card core grid)
+   ========================================================================== */
+.lifenet-featured{grid-column:1 / -1}
+.lifenet-featured-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;min-width:0;
+}
+.lifenet-featured-main{min-width:0;flex:1 1 auto}
+.lifenet-cta{
+  flex:0 0 auto;white-space:nowrap;
+  background:#fff1f2;border:1px solid #fecdd3;color:#be123c;
+  padding:10px 16px;border-radius:999px;
+}
+.card:hover .lifenet-cta{gap:8px;background:#ffe4e6}
+@media(max-width:900px){
+  .lifenet-featured-inner{flex-direction:column;align-items:stretch}
+  .lifenet-cta{justify-content:center;text-align:center;white-space:normal}
+}

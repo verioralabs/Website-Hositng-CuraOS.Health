@@ -354,3 +354,11 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 - Added the `Blood Bank & LifeNet` enterprise module card with `media/CuraOS-BloodBank.png`, `$129/mo` starting price, live ABO/Rh inventory, anti-fraud donor verification, and inter-hospital transfer messaging.
 - Added the `Emergency Blood Finder` CTA to desktop navigation, mobile navigation, and the hero CTA group. All links target `https://app.curaos.health/blood-finder` and use a restrained emergency pulse indicator.
 - Added CuraOS-Blood to the product marquee and updated the suite count to seven purpose-built products. CSS keeps the card grid responsive and the existing `html,body{overflow-x:hidden;max-width:100%}` guard active for mobile.
+
+## 23. 2026-09-18 — Nahar live deployment banner + 6-card grid with LifeNet spotlight
+
+- **Live deployment trust banner** directly below the hero (`.live-deployments` / `.live-deploy-card` in `index.html` + `css/style.css`): `Nahar General Hospital — Savar, Dhaka` + green `Live Operational Deployment` badge, links `https://nahar.curaos.health/` (`target="_blank" rel="noopener noreferrer"`, `title="Powered by CuraOS™ Enterprise Suite"`), sub-line `Powered by CuraOS™ Enterprise Suite · Visit live site →`. Wraps/column-stacks on mobile (`flex-wrap`, `min-width:0`, `max-width:100%`) under the existing `html,body{overflow-x:hidden}` guard — 0px horizontal overflow.
+- **Modules grid rebalanced to 6 core cards** (`#modules .grid-2`): Hospital / Clinic / Rx / Doctor / Labs / CuraOS-WaitList (`$49/mo`, standard card, unchanged). Removed the 7th orphan slot.
+- **CuraOS-LifeNet full-width spotlight** (`grid-column:1 / -1`, `.lifenet-featured`) below the core grid: title `CuraOS-LifeNet`, tag `ENTERPRISE / PUBLIC EMERGENCY NETWORK`, `$129/mo` badge, ABO/Rh + anti-fraud donor verification + B2B transfers + public finder copy, CTA `Explore Blood Bank & LifeNet →` → `https://app.curaos.health/blood-finder`. Stacks vertically under 900px.
+- Marquee renamed `CuraOS-Blood` → `CuraOS-LifeNet` (both loop copies); suite count stays seven.
+- Cache-bust `css/js?v=3.0` → `v3.1`, SW `curaos-site-v13` → `v14`.

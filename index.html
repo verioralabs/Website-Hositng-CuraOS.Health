@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=3.1">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -176,6 +176,20 @@
       </div>
     </section>
 
+    <!-- Live Deployments / Powered Hospitals trust banner -->
+    <section class="live-deployments" aria-label="Live deployments">
+      <div class="container">
+        <a class="live-deploy-card" href="https://nahar.curaos.health/" target="_blank" rel="noopener noreferrer" title="Powered by CuraOS™ Enterprise Suite" data-reveal>
+          <span class="live-deploy-eyebrow">Live Deployments · Powered Hospitals</span>
+          <span class="live-deploy-main">
+            <span class="live-deploy-hospital"><span class="live-dot" aria-hidden="true"></span>Nahar General Hospital — Savar, Dhaka</span>
+            <span class="live-deploy-badge">Live Operational Deployment</span>
+          </span>
+          <span class="live-deploy-sub">Powered by CuraOS™ Enterprise Suite <span class="live-deploy-link">Visit live site →</span></span>
+        </a>
+      </div>
+    </section>
+
     <!-- Trust / logo carousel -->
     <section class="marquee-section" aria-label="CuraOS product suite">
        <p class="marquee-label">One suite, seven purpose-built products</p>
@@ -187,7 +201,7 @@
           <span class="marquee-item"><img src="media/CuraOS-Doctor3.png" alt="" width="26" height="26">CuraOS-Doctor</span>
            <span class="marquee-item"><img src="media/CuraOS-Labs2.png" alt="" width="26" height="26">CuraOS-Labs</span>
            <span class="marquee-item"><img src="media/CuraOS-WaitList2.png" alt="" width="26" height="26">CuraOS-WaitList</span>
-           <span class="marquee-item"><img src="media/CuraOS-BloodBank.png" alt="" width="26" height="26">CuraOS-Blood</span>
+           <span class="marquee-item"><img src="media/CuraOS-BloodBank.png" alt="" width="26" height="26">CuraOS-LifeNet</span>
           <!-- duplicate for seamless loop -->
           <span class="marquee-item" aria-hidden="true"><img src="media/CuraOS-Hospital3.png" alt="" width="26" height="26">CuraOS-Hospital</span>
           <span class="marquee-item" aria-hidden="true"><img src="media/CuraOS-Clinic2.png" alt="" width="26" height="26">CuraOS-Clinic</span>
@@ -195,7 +209,7 @@
           <span class="marquee-item" aria-hidden="true"><img src="media/CuraOS-Doctor3.png" alt="" width="26" height="26">CuraOS-Doctor</span>
            <span class="marquee-item" aria-hidden="true"><img src="media/CuraOS-Labs2.png" alt="" width="26" height="26">CuraOS-Labs</span>
            <span class="marquee-item" aria-hidden="true"><img src="media/CuraOS-WaitList2.png" alt="" width="26" height="26">CuraOS-WaitList</span>
-           <span class="marquee-item" aria-hidden="true"><img src="media/CuraOS-BloodBank.png" alt="" width="26" height="26">CuraOS-Blood</span>
+           <span class="marquee-item" aria-hidden="true"><img src="media/CuraOS-BloodBank.png" alt="" width="26" height="26">CuraOS-LifeNet</span>
         </div>
       </div>
     </section>
@@ -369,17 +383,6 @@
             <p class="desc">LIMS queue, analyzer QC, TAT tracking, report governance.</p>
            <span class="card-cta">Open Labs Admin →</span>
           </a>
-          <a href="https://app.curaos.health/blood-bank" class="card shadow-floating-card emergency-card" data-reveal>
-            <div class="card-top">
-              <span class="icon-wrap" style="background:#FFF1F2"><img src="media/CuraOS-BloodBank.png" alt="" width="32" height="32"></span>
-              <span class="price blood-price">$129/mo</span>
-            </div>
-            <h3>Blood Bank &amp; LifeNet</h3>
-            <p class="tag">ENTERPRISE / PUBLIC NETWORK</p>
-            <p class="desc">Real-time ABO/Rh stock, barcode and expiry tracking, anti-fraud donor verification, and emergency inter-hospital B2B transfers.</p>
-            <span class="card-feature-list"><strong>Live inventory</strong> · <strong>Verified donors</strong> · <strong>Network transfers</strong></span>
-            <span class="card-cta">Explore Blood Bank &amp; LifeNet →</span>
-          </a>
           <a href="https://app.curaos.health/waitlist/admin" class="card shadow-floating-card" data-reveal>
             <div class="card-top">
               <span class="icon-wrap" style="background:#EEF2FF"><img src="media/CuraOS-WaitList2.png" alt="" width="32" height="32"></span>
@@ -389,6 +392,21 @@
             <p class="tag">QUEUE MANAGEMENT OS</p>
             <p class="desc">QR self-check-in, priority triage (elderly/emergency fast-track), live TV board with spoken announcements, real-time position tracking.</p>
             <span class="card-cta">Open WaitList Admin →</span>
+          </a>
+          <a href="https://app.curaos.health/blood-finder" class="card shadow-floating-card emergency-card lifenet-featured" data-reveal>
+            <div class="lifenet-featured-inner">
+              <div class="lifenet-featured-main">
+                <div class="card-top">
+                  <span class="icon-wrap" style="background:#FFF1F2"><img src="media/CuraOS-BloodBank.png" alt="" width="32" height="32"></span>
+                  <span class="price blood-price">$129/mo</span>
+                </div>
+                <h3>CuraOS-LifeNet</h3>
+                <p class="tag">ENTERPRISE / PUBLIC EMERGENCY NETWORK</p>
+                <p class="desc">Real-time ABO/Rh inventory, anti-fraud donor verification, inter-hospital B2B stock transfers, and public emergency finder.</p>
+                <span class="card-feature-list"><strong>Live inventory</strong> · <strong>Verified donors</strong> · <strong>Network transfers</strong></span>
+              </div>
+              <span class="card-cta lifenet-cta">Explore Blood Bank &amp; LifeNet →</span>
+            </div>
           </a>
         </div>
       </div>
@@ -584,6 +602,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=3.0"></script>
+  <script src="js/main.js?v=3.1"></script>
 </body>
 </html>
