@@ -330,13 +330,14 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
   text-transform:uppercase;color:var(--text-muted);margin:0 0 16px;
 }
 .marquee-track-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.marquee-track{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.marquee-track{display:flex;width:max-content;animation:marquee-scroll 35s linear infinite}
 .marquee-track:hover{animation-play-state:paused}
-.marquee-item{display:flex;align-items:center;gap:10px;flex:0 0 auto;padding-right:48px;color:#64748b;font-weight:700;font-size:14px;opacity:.75;transition:opacity var(--dur-fast)}
+.ticker-group{display:flex;align-items:center;gap:40px;margin-right:40px}
+.marquee-item{display:flex;align-items:center;gap:10px;flex:0 0 auto;color:#64748b;font-weight:700;font-size:14px;opacity:.75;transition:opacity var(--dur-fast)}
 .marquee-item:hover{opacity:1}
 .marquee-item img{height:26px;width:auto;opacity:.85;transition:opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out)}
 .marquee-item:hover img{opacity:1;transform:scale(1.05)}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 .badges-section{padding:18px 0;background:white;border-bottom:1px solid var(--border)}
 .badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}

@@ -460,3 +460,14 @@ single column in Header → Badge → Body → full-width CTA order. Cache-bust
 - Removed `grayscale(100%)`: product icons now show authentic brand colors at
   opacity `.85`, going to full opacity + `scale(1.05)` on hover.
 - Cache-bust `css/js?v=3.8` → `v3.9`, SW `curaos-site-v3.8` → `curaos-site-v3.9`.
+
+## 32. 2026-09-18 — v4.0 ticker-group marquee rebuild
+
+### v4.0 - Ticker-Group Continuous Loop
+- Rebuilt the ticker as two identical `.ticker-group` children (7 items each),
+  each with identical `gap:40px` + `margin-right:40px`, so inter- and
+  intra-group spacing match perfectly and the -50% reset is invisible.
+- Track is spec-literal `display:flex;width:max-content` with
+  `@keyframes marquee-scroll` (`0% → -50%`), `35s linear infinite`, pause on
+  hover; brand-color icons + hover zoom retained from v3.9.
+- Cache-bust `css/js?v=3.9` → `v4.0`, SW `curaos-site-v3.9` → `curaos-site-v4.0`.
