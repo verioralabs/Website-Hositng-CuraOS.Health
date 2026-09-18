@@ -471,3 +471,12 @@ single column in Header → Badge → Body → full-width CTA order. Cache-bust
   `@keyframes marquee-scroll` (`0% → -50%`), `35s linear infinite`, pause on
   hover; brand-color icons + hover zoom retained from v3.9.
 - Cache-bust `css/js?v=3.9` → `v4.0`, SW `curaos-site-v3.9` → `curaos-site-v4.0`.
+
+## 33. 2026-09-18 — v4.1 four-set widescreen marquee
+
+### v4.1 - Widescreen Ticker Coverage
+- Track now renders four identical `.ticker-group` sets (7 products each, sets
+  2–4 `aria-hidden`); the -50% loop shift moves exactly two sets, so Set 3
+  lands at x=0 and no whitespace appears on 1440px/1920px monitors.
+- CSS unchanged (`flex` / `max-content` / `marquee-scroll` 35s from v4.0).
+- Cache-bust `css/js?v=4.0` → `v4.1`, SW `curaos-site-v4.0` → `curaos-site-v4.1`.
