@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=4.1">
+  <link rel="stylesheet" href="css/style.css?v=4.2">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -452,6 +452,23 @@
             <p class="desc">QR self-check-in, priority triage (elderly/emergency fast-track), live TV board with spoken announcements, real-time position tracking.</p>
             <span class="card-cta">Open WaitList Admin →</span>
           </a>
+          <a href="https://app.curaos.health/ph-1001" target="_blank" rel="noopener noreferrer" class="card shadow-floating-card patienthub-card featured-card" data-reveal>
+            <div class="featured-card-inner">
+              <div class="card-top featured-head">
+                <div class="featured-brand">
+                  <span class="icon-wrap" style="background:#EEF2FF"><img src="media/PatientHub2.svg" alt="" width="32" height="32"></span>
+                  <h3 class="featured-title">CuraOS-PatientHub (PWA)</h3>
+                </div>
+              </div>
+              <span class="price patienthub-price featured-badge">$99/mo</span>
+              <div class="featured-body">
+                <p class="tag">PATIENT PORTAL &amp; DIRECT BOOKING</p>
+                <p class="desc">Instant PWA conversion for static hospital websites. Short-ID routing (PH-XXXX), frictionless appointment booking, direct-to-hospital regional merchant settlement, and digital health wallet passes.</p>
+                <span class="card-feature-list patienthub-feature-list"><strong>Short-ID Routing</strong> · <strong>Direct Merchant Settlement</strong> · <strong>Wallet Passes</strong></span>
+              </div>
+              <span class="card-cta patienthub-cta featured-cta">Explore PatientHub →</span>
+            </div>
+          </a>
           <a href="https://app.curaos.health/blood-finder" target="_blank" rel="noopener noreferrer" class="card shadow-floating-card emergency-card lifenet-featured" data-reveal>
             <div class="lifenet-featured-inner">
               <div class="card-top lifenet-head">
@@ -663,6 +680,19 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=4.1"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+  </script>
+
+  <script src="js/main.js?v=4.2"></script>
 </body>
 </html>

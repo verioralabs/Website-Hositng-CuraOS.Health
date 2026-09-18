@@ -687,6 +687,27 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 /* ==========================================================================
    CuraOS-LifeNet full-width featured banner (below 6-card core grid)
    ========================================================================== */
+.featured-card{grid-column:1 / -1;min-width:0;padding:28px}
+.featured-card-inner{
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;min-width:0;
+  grid-template-areas:"head badge" "body cta";
+}
+.featured-head{grid-area:head;display:flex;align-items:center;min-width:0}
+.featured-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.featured-card .icon-wrap{flex:0 0 auto}
+.featured-title{margin:0;font-size:18px;color:var(--brand-dark);white-space:nowrap}
+.featured-body{grid-area:body;min-width:0}
+.featured-badge{grid-area:badge;justify-self:end;align-self:center;line-height:1.5}
+.featured-cta{
+  grid-area:cta;justify-self:end;align-self:center;margin-top:0;white-space:nowrap;max-width:100%;
+  padding:10px 16px;border-radius:999px;
+}
+.patienthub-card{border-color:#c7d2fe;background:linear-gradient(145deg,#fff 0%,#f8faff 100%)}
+.patienthub-card:hover{border-color:#a5b4fc}
+.patienthub-price{background:#eef2ff;border-color:#c7d2fe;color:#4338ca}
+.patienthub-feature-list{color:#4338ca}
+.patienthub-cta{background:#eef2ff;border:1px solid #c7d2fe;color:#4338ca}
+.card:hover .patienthub-cta{background:#e0e7ff}
 .lifenet-featured{grid-column:1 / -1;min-width:0;padding:28px}
 /* LifeNet flagship grid: text column left, price-badge + CTA stack right */
 .lifenet-featured-inner{
@@ -707,7 +728,9 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 }
 .card:hover .lifenet-cta{gap:8px;background:#ffe4e6}
 @media(max-width:768px){
-  .lifenet-featured-inner{grid-template-columns:1fr;grid-template-areas:"head" "badge" "body" "cta";gap:12px}
+  .featured-card-inner,.lifenet-featured-inner{grid-template-columns:1fr;grid-template-areas:"head" "badge" "body" "cta";gap:12px}
+  .featured-badge{justify-self:start}
+  .featured-cta{justify-self:stretch;justify-content:center;text-align:center;white-space:normal;width:100%}
   .lifenet-badge{justify-self:start}
   .lifenet-cta{justify-self:stretch;justify-content:center;text-align:center;white-space:normal;width:100%}
 }
