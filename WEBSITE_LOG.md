@@ -447,3 +447,16 @@ single column in Header → Badge → Body → full-width CTA order. Cache-bust
 - Header locked to a 68px center-aligned flex line; right-side utility group
   gap 12px; pills hide ≤1100px to declutter laptop/tablet headers.
 - Cache-bust `css/js?v=3.7` → `v3.8`, SW `curaos-site-v3.7` → `curaos-site-v3.8`.
+
+## 31. 2026-09-18 — v3.9 seamless marquee + brand-color icons
+
+### v3.9 - Marquee Loop Fix & Icon Color
+- Fixed the true seamless-loop defect: the track already held two identical
+  7-item sets, but `gap:48px` on the flex track made the -50% loop point land
+  half a gap off (visible jump each cycle). Spacing moved into per-item
+  `padding-right:48px`, so -50% aligns exactly.
+- Keyframes renamed to spec-literal `@keyframes marquee` (`0% → -50%`),
+  `30s linear infinite`, pause on `.marquee-track:hover`.
+- Removed `grayscale(100%)`: product icons now show authentic brand colors at
+  opacity `.85`, going to full opacity + `scale(1.05)` on hover.
+- Cache-bust `css/js?v=3.8` → `v3.9`, SW `curaos-site-v3.8` → `curaos-site-v3.9`.
