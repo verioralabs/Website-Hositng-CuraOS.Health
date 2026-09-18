@@ -420,3 +420,15 @@ single column in Header → Badge → Body → full-width CTA order. Cache-bust
   emergency blood finder (`target="_blank" rel="noopener noreferrer"`).
 - Full hospital preview kept as the default tab; no pricing badges in the hero.
 - Cache-bust `css/js?v=3.5` → `v3.6`, SW `curaos-site-v3.5` → `curaos-site-v3.6`.
+
+## 29. 2026-09-18 — v3.7 LifeNet SVG icon integration
+
+### v3.7 - LifeNet SVG Icons & SW Cache Bump
+- Replaced the red CSS dot on the hero `Blood Bank` mockup tab with the
+  official `media/CuraOS-BloodBank.svg` icon at 16px
+  (`vertical-align:middle`, 6px right margin).
+- Replaced the indicator dot in the floating emergency pill with the same SVG
+  at 18px, inline and vertically centered.
+- (Spec draft said v3.6, but v3.6 already shipped live — bumped to v3.7 so
+  caches actually invalidate.) Cache-bust `css/js?v=3.6` → `v3.7`, SW
+  `curaos-site-v3.6` → `curaos-site-v3.7`.

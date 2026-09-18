@@ -245,7 +245,7 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 .mockup-tab-blood{display:inline-flex;align-items:center;gap:6px;color:#be123c}
 .mockup-tab-blood:hover{color:#9f1239}
 .mockup-tab-blood.is-active{color:#9f1239;box-shadow:0 -2px 0 #e11d48 inset}
-.blood-dot{width:8px;height:8px;border-radius:999px;background:#e11d48;display:inline-block;flex:0 0 8px;box-shadow:0 0 0 0 rgba(225,29,72,.45);animation:emergency-pulse 1.8s ease-out infinite}
+.tab-svg-icon{width:16px;height:16px;flex:0 0 auto;vertical-align:middle;margin-right:6px}
 .mockup-body{padding:16px;background:linear-gradient(135deg,rgba(234,244,255,0.6),rgba(244,234,254,0.6));border-top:1px solid #e2e8f0}
 .mockup-panel{display:none;animation:fade-up var(--dur-med) var(--ease-out)}
 .mockup-panel.is-active{display:block}
@@ -288,6 +288,7 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 }
 .hero-proof-pill:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
 .hero-proof-pill strong{color:#be123c}
+.pill-svg-icon{width:18px;height:18px;flex:0 0 auto}
 .hero-proof-link{font-weight:800;color:#be123c;white-space:nowrap}
 @media(max-width:600px){.hero-proof-pill{border-radius:16px}}
 
