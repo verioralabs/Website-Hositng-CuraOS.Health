@@ -385,3 +385,21 @@ right via `margin-left:auto;flex-shrink:0;align-self:center`; header wrapper is
 explicit `display:flex;align-items:center;justify-content:space-between;width:100%`.
 ≤600px the header may wrap (price drops to its own right-aligned line) so
 320–360px phones never overflow; CTA stays full-width below.
+
+## 26. 2026-09-18 — v3.4 SW auto-reload + LifeNet 2-column grid refactor
+
+### v3.4 - LifeNet 2-Column Layout & SW Auto-Reload
+- Service Worker now forces a clean browser reload on update (`skipWaiting` +
+  `clients.claim` verified in `sw.js`; `controllerchange` → one-shot
+  `location.reload()` guard in `js/main.js`), so fresh CSS/JS can never strand
+  behind a stale worker.
+- LifeNet card refactored to a 2-column flagship grid: text (brand header, tag,
+  desc, feature pills) spans the full left column; `$129/mo` badge sits
+  top-right with the CTA pill underneath it in the right column.
+- Documented deployment state in system changelog.
+
+Details: `.lifenet-featured-inner` is now
+`display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center` with
+areas `"head badge" / "body cta"`; card padding `28px`. <768px collapses to a
+single column in Header → Badge → Body → full-width CTA order. Cache-bust
+`css/js?v=3.3` → `v3.4`, SW `curaos-site-v3.3` → `curaos-site-v3.4`.

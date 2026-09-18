@@ -72,6 +72,14 @@
 
   // Register SW for PWA (if served via https / localhost)
   if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+    // Force a clean reload once a new SW takes control (picks up fresh CSS/JS).
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', ()=>{
+      if(!refreshing){
+        refreshing = true;
+        window.location.reload();
+      }
+    });
     window.addEventListener('load', ()=>{
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
     });
