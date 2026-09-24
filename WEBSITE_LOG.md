@@ -285,3 +285,8 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 
 - **Hero:** “One operating system for the entire hospital.” now uses a bold Plus Jakarta Sans display treatment with navy text and a blue-to-teal gradient on “entire hospital,” matching the supplied reference.
 - **Cache:** stylesheet URL and service-worker cache advanced to v4.6.
+
+## 23. 2026-09-24 — Install App CTA Styling
+
+- **Buttons:** all Install App actions now use the reference CTA styling: blue fill, 12px corners, 50px height, white label, and a right-arrow icon.
+- **Cache:** stylesheet URL and service-worker cache advanced to v4.7.

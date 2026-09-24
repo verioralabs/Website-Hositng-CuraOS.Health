@@ -191,8 +191,13 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
 .btn-primary:active{transform:translateY(0)}
 .btn-dark{background:#0f172a;color:white}
 .btn-dark:hover{background:black;transform:translateY(-2px)}
-.btn-install{background:#059669;color:white;border-color:transparent}
-.btn-install:hover{background:#047857;transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(5,150,105,.4)}
+.btn-install{
+  background:#1f6feb;color:#fff;border-color:transparent;border-radius:12px;
+  min-height:50px;padding:0 22px;font-size:15px;font-weight:700;
+  box-shadow:0 8px 20px rgba(31,111,235,.18);
+}
+.btn-install:hover{background:#1655c2;transform:translateY(-1px);box-shadow:0 10px 24px rgba(31,111,235,.26)}
+.btn-install svg{width:16px;height:16px;flex:0 0 auto}
 .btn-ghost{background:rgba(255,255,255,0.6);border-color:#e2e8f0;color:var(--brand-dark);backdrop-filter:blur(6px)}
 .btn-ghost:hover{background:#fff;border-color:#cbd5e1;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 .btn-emergency{background:#e11d48;color:#fff;box-shadow:0 8px 20px -10px rgba(225,29,72,.7)}
