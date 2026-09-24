@@ -845,3 +845,20 @@ small,
   font-weight:500 !important;
   letter-spacing:0.5px !important;
 }
+
+/* Hero headline treatment inspired by the Nahar hospital title. */
+.hero-title{
+  font-family:var(--md3-display-font-family) !important;
+  font-size:clamp(2.5rem,4vw,3.5rem) !important;
+  line-height:1.08 !important;
+  font-weight:800 !important;
+  letter-spacing:-0.04em !important;
+  color:#123574 !important;
+}
+.hero-title .accent-text{
+  font-weight:800 !important;
+  background:linear-gradient(100deg,#1768d3 0%,#0e9ca6 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
