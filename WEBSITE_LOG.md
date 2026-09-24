@@ -290,3 +290,8 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 
 - **Buttons:** all Install App actions now use the reference CTA styling: blue fill, 12px corners, 50px height, white label, and a right-arrow icon.
 - **Cache:** stylesheet URL and service-worker cache advanced to v4.7.
+
+## 24. 2026-09-24 — Install App Download Icon
+
+- **Buttons:** retained the blue Install App CTA styling, removed the right arrows, and placed a download-to-tray icon before each label.
+- **Cache:** stylesheet URL and service-worker cache advanced to v4.8.

@@ -1,5 +1,5 @@
-const CACHE = "curaos-v4.7";
-const ASSETS = ["./", "./index.html", "./css/style.css?v=4.7", "./js/main.js?v=4.2", "./media/logo.png", "./CuraOS-favicon.v2.png", "./manifest.json"];
+const CACHE = "curaos-v4.8";
+const ASSETS = ["./", "./index.html", "./css/style.css?v=4.8", "./js/main.js?v=4.2", "./media/logo.png", "./CuraOS-favicon.v2.png", "./manifest.json"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
   self.skipWaiting();
