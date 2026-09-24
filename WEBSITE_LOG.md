@@ -268,3 +268,9 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 - **P1 IA+Polish (1b786b6)** — 30 stubs → `router.replace` redirects (lab/rx/nursing/doctor/executive/health-score/care) consolidates 5 dup clusters; `tokens.css` + `--elevation/radius/ease/space/glass` + `.glass-card/.min-touch 44px/.text-caption 12px`; `AppShell`/`AppSidebar` `min-h-[44px] py-3` + `text-[11px]→text-xs`; `/loading.tsx` shimmer + `/not-found.tsx` pastel 404.
 - **P2 DB+Docs (bce04a2 + 88ebe88)** — `tenants 0025` adds `bed_room_number_alive_uniq`, `labdept_facility_name_alive_uniq`, `solorx_tenant_rx_alive_uniq` (6/19 alive constraints); `SYSTEM_CAPABILITIES` P1 section + `SCREENSHOT_PLAN.md:1` 12 hero pages (home/pricing/hospital-control/lab/qc/waitlist-tv/solo/pharmacy/backup/quorum/security/interop) for PDF `CuraOS_Audit_Report_2026-09-07.pdf` — run `playwright screenshot` when ready.
 - **Verify** `python manage.py check` 0 (tenants 0025), `npx tsc --noEmit --skipLibCheck` 0, `npm run build` 145 routes (● `/telemedicine/room/demo` + `/waitlist/ticket/demo`).
+
+## 20. 2026-09-24 — M3 Typography + PatientHub Product Marquee
+
+- **Typography:** CuraOS website now loads Roboto and maps semantic headings, body text, labels, captions, and Carbon type utility classes to Material Design 3 typography tokens in `css/style.css`.
+- **Product marquee:** `CuraOS-PatientHub` (`media/PatientHub2.svg`) added to all four repeated ticker groups; label updated to eight purpose-built products.
+- **Cache:** stylesheet URL and service-worker cache advanced to v4.4 to refresh the deployed static Pages assets.

@@ -50,7 +50,7 @@ html{scroll-behavior:smooth}
 html,body{overflow-x:hidden;max-width:100%}
 body{
   margin:0;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  font-family:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
   color:var(--text-primary);
   -webkit-font-smoothing:antialiased;
@@ -733,4 +733,111 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
   .featured-cta{justify-self:stretch;justify-content:center;text-align:center;white-space:normal;width:100%}
   .lifenet-badge{justify-self:start}
   .lifenet-cta{justify-self:stretch;justify-content:center;text-align:center;white-space:normal;width:100%}
+}
+
+/* ==========================================================================
+   Material Design 3 typography overrides
+   Typography only: keep Carbon/site layout and color rules intact.
+   ========================================================================== */
+:root{
+  --md3-font-family:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --md3-headline-large-size:32px;
+  --md3-headline-large-line-height:40px;
+  --md3-headline-medium-size:28px;
+  --md3-headline-medium-line-height:36px;
+  --md3-headline-small-size:24px;
+  --md3-headline-small-line-height:32px;
+  --md3-body-large-size:16px;
+  --md3-body-large-line-height:24px;
+  --md3-body-medium-size:14px;
+  --md3-body-medium-line-height:20px;
+  --md3-label-large-size:14px;
+  --md3-label-large-line-height:20px;
+  --md3-label-medium-size:12px;
+  --md3-label-medium-line-height:16px;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+[class^="cds--"],
+[class*=" cds--"]{
+  font-family:var(--md3-font-family) !important;
+}
+
+/* Headline Large (32/40), Medium (28/36), Small (24/32). */
+h1,
+.hero-title,
+.cds--type-expressive-heading-04,
+.md3-headline-large{
+  font-size:var(--md3-headline-large-size) !important;
+  line-height:var(--md3-headline-large-line-height) !important;
+  font-weight:400 !important;
+  letter-spacing:-0.25px !important;
+}
+h2,
+.cds--type-expressive-heading-03,
+.md3-headline-medium{
+  font-size:var(--md3-headline-medium-size) !important;
+  line-height:var(--md3-headline-medium-line-height) !important;
+  font-weight:400 !important;
+  letter-spacing:0 !important;
+}
+h3,
+.cds--type-expressive-heading-02,
+.cds--type-productive-heading-02,
+.cds--type-productive-heading-01,
+.md3-headline-small{
+  font-size:var(--md3-headline-small-size) !important;
+  line-height:var(--md3-headline-small-line-height) !important;
+  font-weight:400 !important;
+  letter-spacing:0 !important;
+}
+
+/* Body Large (16/24) and Body Medium (14/20). */
+p,
+.cds--type-body-01,
+.cds--type-body-long-01,
+.md3-body-large{
+  font-size:var(--md3-body-large-size) !important;
+  line-height:var(--md3-body-large-line-height) !important;
+  font-weight:400 !important;
+  letter-spacing:0.5px !important;
+}
+.cds--type-body-02,
+.cds--type-body-long-02,
+.cds--type-body-compact-01,
+.cds--type-body-compact-02,
+.md3-body-medium{
+  font-size:var(--md3-body-medium-size) !important;
+  line-height:var(--md3-body-medium-line-height) !important;
+  font-weight:400 !important;
+  letter-spacing:0.25px !important;
+}
+
+/* Labels and captions. */
+button,
+input,
+select,
+textarea,
+.cds--type-label-02,
+.cds--type-label-01,
+.md3-label-large{
+  font-size:var(--md3-label-large-size) !important;
+  line-height:var(--md3-label-large-line-height) !important;
+  font-weight:500 !important;
+  letter-spacing:0.1px !important;
+}
+small,
+.cds--type-caption-01,
+.cds--type-caption-02,
+.cds--type-helper-text-01,
+.cds--type-legal-01,
+.md3-label-medium{
+  font-size:var(--md3-label-medium-size) !important;
+  line-height:var(--md3-label-medium-line-height) !important;
+  font-weight:500 !important;
+  letter-spacing:0.5px !important;
 }
