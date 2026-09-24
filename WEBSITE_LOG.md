@@ -274,3 +274,9 @@ curl.exe --noproxy "*" -s https://curaos.health/ | Select-String "CuraOS"
 - **Typography:** CuraOS website now loads Roboto and maps semantic headings, body text, labels, captions, and Carbon type utility classes to Material Design 3 typography tokens in `css/style.css`.
 - **Product marquee:** `CuraOS-PatientHub` (`media/PatientHub2.svg`) added to all four repeated ticker groups; label updated to eight purpose-built products.
 - **Cache:** stylesheet URL and service-worker cache advanced to v4.4 to refresh the deployed static Pages assets.
+
+## 21. 2026-09-24 — Plus Jakarta Sans Display Headings
+
+- **Font loading:** added Google Fonts Plus Jakarta Sans weights 400–800 to the CuraOS marketing page.
+- **Typography:** M3 headline tokens (semantic `h1`–`h3`, `.hero-title`, MD3 utilities, and Carbon heading aliases) now use Plus Jakarta Sans; body text and controls remain Roboto.
+- **Cache:** stylesheet URL and service-worker cache advanced to v4.5.

@@ -741,6 +741,7 @@ a.brand-logo img{height:32px;width:auto;object-fit:contain;display:block;backgro
    ========================================================================== */
 :root{
   --md3-font-family:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --md3-display-font-family:"Plus Jakarta Sans","Roboto",system-ui,sans-serif;
   --md3-headline-large-size:32px;
   --md3-headline-large-line-height:40px;
   --md3-headline-medium-size:28px;
@@ -772,6 +773,7 @@ h1,
 .hero-title,
 .cds--type-expressive-heading-04,
 .md3-headline-large{
+  font-family:var(--md3-display-font-family) !important;
   font-size:var(--md3-headline-large-size) !important;
   line-height:var(--md3-headline-large-line-height) !important;
   font-weight:400 !important;
@@ -780,6 +782,7 @@ h1,
 h2,
 .cds--type-expressive-heading-03,
 .md3-headline-medium{
+  font-family:var(--md3-display-font-family) !important;
   font-size:var(--md3-headline-medium-size) !important;
   line-height:var(--md3-headline-medium-line-height) !important;
   font-weight:400 !important;
@@ -790,6 +793,7 @@ h3,
 .cds--type-productive-heading-02,
 .cds--type-productive-heading-01,
 .md3-headline-small{
+  font-family:var(--md3-display-font-family) !important;
   font-size:var(--md3-headline-small-size) !important;
   line-height:var(--md3-headline-small-line-height) !important;
   font-weight:400 !important;
